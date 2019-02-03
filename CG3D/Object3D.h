@@ -8,10 +8,10 @@ using namespace glm;
 class Object3D
 {
 public:
-	Object3D(vec4 position);
-	Object3D(vec4 position, mat4x4 internal);
-	~Object3D();
-	vec4 position;
+	Object3D(vec3 position);
+	Object3D(vec3 position, mat4x4 internal);
+	virtual ~Object3D();
+	vec3 position;
 	mat4x4 internal;
 	mat4x4 model;
 	void Rotate(float degrees, vec3 axis);

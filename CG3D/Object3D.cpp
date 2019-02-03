@@ -3,23 +3,18 @@
 
 using namespace glm;
 
-Object3D::Object3D()
-{
-}
-
-
-Object3D::Object3D(vec4 position)
+Object3D::Object3D(vec3 position)
 {
 	this->position = position;
 	this->internal = mat4(1.0f);
-	this->model = mat4(1.0f);
+	this->model = translate(mat4(1.0f), position);
 }
 
-Object3D::Object3D(vec4 position, mat4x4 internal)
+Object3D::Object3D(vec3 position, mat4x4 internal)
 {
 	this->position = position;
 	this->internal = internal;
-	this->model = mat4(1.0f);
+	this->model = translate(mat4(1.0f), position);
 }
 
 Object3D::~Object3D()
@@ -33,6 +28,7 @@ void Object3D::Rotate(float degrees, vec3 axis)
 
 void Object3D::Translate(vec3 translation)
 {
+	position += translation;
 	model = translate(model, translation);
 }
 
