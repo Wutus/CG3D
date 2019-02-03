@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// make sure the viewport matches the new window dimensions; note that width and 
 	// height will be significantly larger than specified on retina displays.
@@ -38,4 +38,36 @@ glwWindow::glwWindow(uint width, uint height, std::string title)
 
 glwWindow::~glwWindow()
 {
+}
+
+bool glwWindow::ShouldClose() const
+{
+	return glfwWindowShouldClose(window);
+}
+
+void glwWindow::SetShouldClose(bool should)
+{
+	glfwSetWindowShouldClose(window, (int)should);
+}
+
+KeyState glwWindow::GetKey(int key) const
+{
+	return (KeyState)glfwGetKey(window, key);
+}
+
+CursorPos glwWindow::GetCursorPos() const
+{
+	CursorPos position;
+	glfwGetCursorPos(window, &position.x, &position.y);
+	return position;
+}
+
+void glwWindow::SetCursorsPos(CursorPos position)
+{
+	glfwSetCursorPos(window, position.x, position.y);
+}
+
+void glwWindow::SwapBuffers()
+{
+	glfwSwapBuffers(window);
 }

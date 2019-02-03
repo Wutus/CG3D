@@ -1,6 +1,19 @@
 #pragma once
 #include <string>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+struct CursorPos {
+	double x;
+	double y;
+};
+
+enum KeyState {
+	RELEASED = 0,
+	PRESSED = 1,
+	REPEAT = 2
+};
+
 typedef unsigned int uint;
 
 class glwWindow;
@@ -12,7 +25,12 @@ class glwWindow
 public:
 	glwWindow(uint width, uint height, std::string title);
 	~glwWindow();
-	void RegisterCallback(glwWindow_cb callback);
+	bool ShouldClose() const;
+	void SetShouldClose(bool should);
+	KeyState GetKey(int key) const;
+	CursorPos GetCursorPos() const;
+	void SetCursorsPos(CursorPos position);
+	void SwapBuffers();
 private:
 	GLFWwindow *window;
 	glwWindow_cb input_cb;
