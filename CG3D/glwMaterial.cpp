@@ -1,6 +1,8 @@
 #include "glwMaterial.h"
 #include <stdexcept>
 
+std::shared_ptr<glwTexture2D> glwMaterial::defaultTexture = nullptr;
+
 glwMaterial::glwMaterial(std::shared_ptr<glwTexture2D> ambientTexture, std::shared_ptr<glwTexture2D> diffuseTexture, std::shared_ptr<glwTexture2D> specularTexture, float shininess)
 {
 	this->ambientTexture = ambientTexture;
@@ -85,5 +87,11 @@ void glwMaterial::setSpecularTexture(std::shared_ptr<glwTexture2D> specularTextu
 
 bool glwMaterial::checkNull()
 {
-	return ambientTexture == nullptr && diffuseTexture == nullptr;
+	//return ambientTexture == nullptr && diffuseTexture == nullptr;
+	if (defaultTexture == nullptr)
+	{
+		defaultTexture = std::shared_ptr<glwTexture2D>(new glwTexture2D("resources/black.jpg", "texture_ambient"));
+	}
+	ambientTexture = defaultTexture;
+	return false;
 }

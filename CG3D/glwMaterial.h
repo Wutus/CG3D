@@ -25,5 +25,6 @@ private:
 	std::shared_ptr<glwTexture2D> normalTexture;
 	std::shared_ptr<glwTexture2D> heightTexture;
 	bool checkNull();
+	static std::shared_ptr<glwTexture2D> defaultTexture;
 };
 

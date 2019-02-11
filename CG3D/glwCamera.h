@@ -11,10 +11,7 @@ public:
 	virtual ~glwCamera();
 	void LookAt(std::shared_ptr<glwObject3D> target);
 	void LookAt(vec3 target);
-
+	const static vec3 up;
 	vec3 fogFactor;
-private:
-	vec3 _pos;
-	mat4x4 _model;
 };
 

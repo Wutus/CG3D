@@ -1,6 +1,6 @@
 #include "glwCamera.h"
 
-const vec3 up = vec3(0.0f, 1.0f, 0.0f);
+const vec3 glwCamera::up = vec3(0.0f, 1.0f, 0.0f);
 
 glwCamera::glwCamera(vec3 pos) : glwObject3D(pos)
 {

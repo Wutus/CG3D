@@ -88,10 +88,10 @@ glwMesh glwModel::processMesh(aiMesh *mesh, const aiScene *scene)
 		vector.z = mesh->mVertices[i].z;
 		vertex.Position = vector;
 		// normals
-		vector.x = mesh->mNormals[i].x;
+		/*vector.x = mesh->mNormals[i].x;
 		vector.y = mesh->mNormals[i].y;
 		vector.z = mesh->mNormals[i].z;
-		vertex.Normal = vector;
+		vertex.Normal = vector;*/
 		// texture coordinates
 		if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
 		{
@@ -105,7 +105,7 @@ glwMesh glwModel::processMesh(aiMesh *mesh, const aiScene *scene)
 		else
 			vertex.TexCoords = glm::vec2(0.0f, 0.0f);
 		// tangent
-		vector.x = mesh->mTangents[i].x;
+		/*vector.x = mesh->mTangents[i].x;
 		vector.y = mesh->mTangents[i].y;
 		vector.z = mesh->mTangents[i].z;
 		vertex.Tangent = vector;
@@ -113,7 +113,7 @@ glwMesh glwModel::processMesh(aiMesh *mesh, const aiScene *scene)
 		vector.x = mesh->mBitangents[i].x;
 		vector.y = mesh->mBitangents[i].y;
 		vector.z = mesh->mBitangents[i].z;
-		vertex.Bitangent = vector;
+		vertex.Bitangent = vector;*/
 		vertices.push_back(vertex);
 	}
 	// now walk through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.

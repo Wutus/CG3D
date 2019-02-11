@@ -31,8 +31,8 @@ public:
 	CursorPos GetCursorPos() const;
 	void SetCursorsPos(CursorPos position);
 	void SwapBuffers();
-private:
 	GLFWwindow *window;
+private:
 	glwWindow_cb input_cb;
 };
 
