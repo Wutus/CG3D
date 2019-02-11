@@ -7,22 +7,32 @@
 #include <fstream>
 #include <iostream>
 
-glwTexture2D::glwTexture2D(std::string filename)
+glwTexture2D::glwTexture2D(std::string filename, std::string type, bool flip)
 {
 	glGenTextures(1, &Id);
 	glBindTexture(GL_TEXTURE_2D, Id);
-	// set the texture wrapping parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// set texture filtering parameters
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	stbi_set_flip_vertically_on_load(true);
+
+	stbi_set_flip_vertically_on_load(flip);
 	unsigned char *data = stbi_load(filename.c_str(), &width, &height, &nrChannels, 0);
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		GLenum format;
+		if (nrChannels == 1)
+			format = GL_RED;
+		else if (nrChannels == 3)
+			format = GL_RGB;
+		else if (nrChannels == 4)
+			format = GL_RGBA;
+
+		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
+
+		// set the texture wrapping parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// set texture filtering parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 	else
 	{
@@ -44,4 +54,24 @@ int glwTexture2D::GetWidth()
 int glwTexture2D::GetHeight()
 {
 	return height;
+}
+
+int glwTexture2D::GetNrChannels()
+{
+	return nrChannels;
+}
+
+unsigned int glwTexture2D::GetID()
+{
+	return Id;
+}
+
+std::string glwTexture2D::GetFileName()
+{
+	return fileName;
+}
+
+std::string glwTexture2D::GetType()
+{
+	return type;
 }

@@ -7,26 +7,27 @@
 #include "glwDrawableObject3D.h"
 #include "glwMesh.h"
 #include "glwShader.h"
+#include "glwTexture2D.h"
 #include <string>
 #include <vector>
+#include <memory>
 
-class glwModel : public glwDrawableObject3D
+class glwModel
 {
 public:
 	/*  Model Data */
-	std::vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+	std::vector<std::shared_ptr<glwTexture2D>> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
 	std::vector<glwMesh> meshes;
 	std::string directory;
 	bool gammaCorrection;
 
 	/*  Functions   */
 	// constructor, expects a filepath to a 3D model.
-	glwModel(std::string const &path, vec3 pos, mat4x4 internal = mat4x4(1.0f) ,bool gamma = false);
+	glwModel(std::string const &path, bool gamma = false);
 
 	// draws the model, and thus all its meshes
-	void Draw(glwShader & shader, mat4x4 model = mat4x4(1.0f)) override;
+	void Draw(glwShader & shader, mat4x4 model = mat4x4(1.0f));
 
-	mat4x4 internal;
 private:
 	/*  Functions   */
 	// loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
@@ -39,8 +40,6 @@ private:
 
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
 	// the required info is returned as a Texture struct.
-	std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
-	mat4x4 _model;
-	vec3 _pos;
+	std::vector<std::shared_ptr<glwTexture2D>> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
 };
 

@@ -169,6 +169,7 @@
     <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
+    <ClInclude Include="glwModelObject3D.h" />
     <ClInclude Include="glwPointLight.h" />
     <ClInclude Include="glwProjection.h" />
     <ClInclude Include="glwShader.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="glwWindow.h" />
     <ClInclude Include="KHR\khrplatform.h" />
     <ClInclude Include="glwObject3D.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="glwTexture2D.h" />
@@ -192,12 +194,14 @@
     <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />
+    <ClCompile Include="glwModelObject3D.cpp" />
     <ClCompile Include="glwPointLight.cpp" />
     <ClCompile Include="glwProjection.cpp" />
     <ClCompile Include="glwShader.cpp" />
     <ClCompile Include="glwSpotLight.cpp" />
     <ClCompile Include="glwWindow.cpp" />
     <ClCompile Include="glwObject3D.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

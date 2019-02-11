@@ -2,9 +2,11 @@
 
 #include "glwDrawableObject3D.h"
 #include "glwShader.h"
+#include "glwTexture2D.h"
 
 #include <string>
 #include <vector>
+#include <memory>
 
 struct Vertex {
 	// position
@@ -32,12 +34,12 @@ public:
 	/*  Mesh Data  */
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
-	std::vector<Texture> textures;
+	std::vector<std::shared_ptr<glwTexture2D>> textures;
 	unsigned int VAO;
 
 	/*  Functions  */
 	// constructor
-	glwMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+	glwMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<std::shared_ptr<glwTexture2D>> textures);
 
 	// render the mesh
 	void Draw(glwShader & shader);
