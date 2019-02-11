@@ -12,6 +12,7 @@ const string SPOTLIGHTS = "spotLights";
 const string DIRLIGHTSIZE = "dirLightSize";
 const string POINTLIGHTSIZE = "pointLightSize";
 const string SPOTLIGHTSIZE = "spotLightSize";
+const string MATERIAL = "material";
 
 glwAdvancedShader::glwAdvancedShader(std::string vertexPath, std::string fragmentPath) : glwShader(vertexPath, fragmentPath)
 {
@@ -70,6 +71,18 @@ void glwAdvancedShader::addDirectionalLight(const glwDirectionalLight & dirLight
 void glwAdvancedShader::setProjection(const glwProjection & projection)
 {
 	setMat4(PROJECTION, projection.projection());
+}
+
+void glwAdvancedShader::setModelMatrix(const mat4x4 & model)
+{
+	setMat4(MODEL, model);
+}
+
+void glwAdvancedShader::setMaterial(const glwMaterial & material)
+{
+	setFloat(MATERIAL + ".shininess", material.shininess);
+	setInt(MATERIAL + ".diffuse", material.getDiffuseTexture()->GetID());
+	setInt(MATERIAL + ".specular", material.getSpecularTexture()->GetID());
 }
 
 void glwAdvancedShader::resetLights()

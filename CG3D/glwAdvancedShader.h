@@ -5,6 +5,10 @@
 #include "glwDirectionalLight.h"
 #include "glwSpotLight.h"
 #include "glwProjection.h"
+#include "glwMaterial.h"
+
+#include "glm/gtc/type_ptr.hpp"
+
 #include <memory>
 #include <string>
 
@@ -19,6 +23,8 @@ public:
 	void addSpotLight(const glwSpotLight & pointLight);
 	void addDirectionalLight(const glwDirectionalLight & pointLight);
 	void setProjection(const glwProjection & projection);
+	void setModelMatrix(const mat4x4 & model);
+	void setMaterial(const glwMaterial & material);
 	void resetLights();
 private:
 	int pointlights;

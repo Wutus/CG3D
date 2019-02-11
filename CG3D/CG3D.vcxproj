@@ -177,7 +177,7 @@
     <ClInclude Include="glwWindow.h" />
     <ClInclude Include="KHR\khrplatform.h" />
     <ClInclude Include="glwObject3D.h" />
-    <ClInclude Include="Material.h" />
+    <ClInclude Include="glwMaterial.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="glwTexture2D.h" />
@@ -201,7 +201,7 @@
     <ClCompile Include="glwSpotLight.cpp" />
     <ClCompile Include="glwWindow.cpp" />
     <ClCompile Include="glwObject3D.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="glwMaterial.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -41,5 +41,6 @@ private:
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
 	// the required info is returned as a Texture struct.
 	std::vector<std::shared_ptr<glwTexture2D>> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
+	std::shared_ptr<glwTexture2D> loadMaterialTexture(aiMaterial *mat, aiTextureType type, std::string typeName);
 };
 

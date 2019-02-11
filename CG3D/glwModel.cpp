@@ -11,6 +11,7 @@
 #include <assimp/postprocess.h>
 #include "glwMesh.h"
 #include "glwShader.h"
+#include "glwMaterial.h"
 
 #include <string>
 #include <fstream>
@@ -132,6 +133,15 @@ glwMesh glwModel::processMesh(aiMesh *mesh, const aiScene *scene)
 	// specular: texture_specularN
 	// normal: texture_normalN
 
+	shared_ptr<glwTexture2D> ambientMap = loadMaterialTexture(material, aiTextureType_AMBIENT, "texture_ambient");
+	shared_ptr<glwTexture2D> diffuseMap = loadMaterialTexture(material, aiTextureType_DIFFUSE, "texture_diffuse");
+	shared_ptr<glwTexture2D> specularMap = loadMaterialTexture(material, aiTextureType_SPECULAR, "texture_specular");
+	shared_ptr<glwMaterial> glwmaterial(new glwMaterial(ambientMap, diffuseMap, specularMap));
+	
+
+	/*vector<shared_ptr<glwTexture2D>> ambientMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_ambient");
+	textures.insert(textures.end(), ambientMaps.begin(), ambientMaps.end());
+
 	// 1. diffuse maps
 	vector<shared_ptr<glwTexture2D>> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
 	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
@@ -143,10 +153,10 @@ glwMesh glwModel::processMesh(aiMesh *mesh, const aiScene *scene)
 	textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 	// 4. height maps
 	vector<shared_ptr<glwTexture2D>> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
-	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());*/
 
 	// return a mesh object created from the extracted mesh data
-	return glwMesh(vertices, indices, textures);
+	return glwMesh(vertices, indices, glwmaterial);
 }
 
 vector<shared_ptr<glwTexture2D>> glwModel::loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName)
@@ -169,10 +179,35 @@ vector<shared_ptr<glwTexture2D>> glwModel::loadMaterialTextures(aiMaterial *mat,
 		}
 		if (!skip)
 		{   // if texture hasn't been loaded already, load it
-			shared_ptr<glwTexture2D> texture(new glwTexture2D(str.C_Str(), typeName));
+			shared_ptr<glwTexture2D> texture(new glwTexture2D(directory + "/" + str.C_Str(), typeName));
 			textures.push_back(texture);
 			textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 		}
 	}
 	return textures;
+}
+
+shared_ptr<glwTexture2D> glwModel::loadMaterialTexture(aiMaterial *mat, aiTextureType type, string typeName)
+{
+	if (mat->GetTextureCount(type) > 0)
+	{
+		aiString str;
+		mat->GetTexture(type, 0, &str);
+		// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
+		bool skip = false;
+		for (unsigned int j = 0; j < textures_loaded.size(); j++)
+		{
+			if (std::strcmp(textures_loaded[j]->GetFileName().data(), str.C_Str()) == 0)
+			{
+				return textures_loaded[j];
+			}
+		}
+		if (!skip)
+		{   // if texture hasn't been loaded already, load it
+			shared_ptr<glwTexture2D> texture(new glwTexture2D(directory + "/" + str.C_Str(), typeName));
+			textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+			return texture;
+		}
+	}
+	return nullptr;
 }

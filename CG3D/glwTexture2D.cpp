@@ -39,6 +39,7 @@ glwTexture2D::glwTexture2D(std::string filename, std::string type, bool flip)
 		std::cout << "Failed to load texture" << std::endl;
 	}
 	stbi_image_free(data);
+	this->type = type;
 }
 
 
@@ -46,32 +47,32 @@ glwTexture2D::~glwTexture2D()
 {
 }
 
-int glwTexture2D::GetWidth()
+int glwTexture2D::GetWidth() const
 {
 	return width;
 }
 
-int glwTexture2D::GetHeight()
+int glwTexture2D::GetHeight() const
 {
 	return height;
 }
 
-int glwTexture2D::GetNrChannels()
+int glwTexture2D::GetNrChannels() const
 {
 	return nrChannels;
 }
 
-unsigned int glwTexture2D::GetID()
+unsigned int glwTexture2D::GetID() const
 {
 	return Id;
 }
 
-std::string glwTexture2D::GetFileName()
+std::string glwTexture2D::GetFileName() const
 {
 	return fileName;
 }
 
-std::string glwTexture2D::GetType()
+std::string glwTexture2D::GetType() const
 {
 	return type;
 }
