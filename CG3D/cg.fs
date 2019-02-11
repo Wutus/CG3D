@@ -18,9 +18,7 @@ struct DirLight {
 struct PointLight {
     vec3 position;
     
-    float constant;
-    float linear;
-    float quadratic;
+    vec3 distanceFactor;
 	
     vec3 ambient;
     vec3 diffuse;
@@ -33,10 +31,8 @@ struct SpotLight {
     float cutOff;
     float outerCutOff;
   
-    float constant;
-    float linear;
-    float quadratic;
-  
+    vec3 distanceFactor;
+
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;       
@@ -49,9 +45,9 @@ in vec3 Normal;
 in vec2 TexCoords;
 
 uniform vec3 viewPos;
-uniform DirLight dirLight[MAX_LIGHTS_SIZE];
+uniform DirLight dirLights[MAX_LIGHTS_SIZE];
 uniform PointLight pointLights[MAX_LIGHTS_SIZE];
-uniform SpotLight spotLight[MAX_LIGHTS_SIZE];
+uniform SpotLight spotLights[MAX_LIGHTS_SIZE];
 uniform Material material;
 uniform int dirLightSize;
 uniform int pointLightSize;
@@ -61,6 +57,7 @@ uniform int spotLightSize;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 DistVec(float distance);
 
 void main()
 {    
@@ -119,7 +116,8 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     // attenuation
     float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));    
+    vec3 distanceVec = DistVec(distance);
+    float attenuation = 1.0 / dot(distanceVec, light.distanceFactor);    
     // combine results
     vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
@@ -141,7 +139,8 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     // attenuation
     float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));    
+    vec3 distanceVec = DistVec(distance);
+    float attenuation = 1.0 / dot(distanceVec, light.distanceFactor);   
     // spotlight intensity
     float theta = dot(lightDir, normalize(-light.direction)); 
     float epsilon = light.cutOff - light.outerCutOff;
@@ -154,4 +153,9 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     diffuse *= attenuation * intensity;
     specular *= attenuation * intensity;
     return (ambient + diffuse + specular);
+}
+
+vec3 DistVec(float distance)
+{
+    return vec3(1.0, distance, distance * distance);
 }

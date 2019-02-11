@@ -61,9 +61,10 @@ static unsigned int TextureFromFile(const char *path, const string &directory, b
 	return textureID;
 }
 
-glwModel::glwModel(string const &path, bool gamma) : gammaCorrection(gamma)
+glwModel::glwModel(std::string const &path, vec3 pos, mat4x4 internal, bool gamma) : gammaCorrection(gamma), glwDrawableObject3D(pos)
 {
 	loadModel(path);
+	this->internal = internal;
 }
 
 void glwModel::Draw(glwShader & shader, mat4x4 model)
@@ -218,14 +219,4 @@ vector<Texture> glwModel::loadMaterialTextures(aiMaterial *mat, aiTextureType ty
 		}
 	}
 	return textures;
-}
-
-vec3 & glwModel::position()
-{
-	return _pos;
-}
-
-mat4x4 & glwModel::model()
-{
-	return _model;
 }

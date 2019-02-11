@@ -6,6 +6,7 @@
 class glwDrawableObject3D : public glwObject3D, public glwDrawable
 {
 public:
+	glwDrawableObject3D(vec3 pos);
 	virtual ~glwDrawableObject3D();
 };
 

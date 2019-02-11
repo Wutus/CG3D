@@ -9,7 +9,7 @@ public:
 	unsigned int ID;
 	// constructor generates the shader on the fly
 	// ------------------------------------------------------------------------
-	glwShader(const char* vertexPath, const char* fragmentPath);
+	glwShader(std::string vertexPath, std::string fragmentPath);
 	// activate the shader
 	// ------------------------------------------------------------------------
 	void use();

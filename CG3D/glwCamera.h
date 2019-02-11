@@ -12,9 +12,7 @@ public:
 	void LookAt(std::shared_ptr<glwObject3D> target);
 	void LookAt(vec3 target);
 
-	// Inherited via glwObject3D
-	virtual vec3 & position() override;
-	virtual mat4x4 & model() override;
+	vec3 fogFactor;
 private:
 	vec3 _pos;
 	mat4x4 _model;

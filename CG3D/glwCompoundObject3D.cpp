@@ -2,13 +2,13 @@
 #include <algorithm>
 
 
-glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwObject3D> base)
+glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwObject3D> base) : glwDrawableObject3D(base->position())
 {
 	this->base = base;
 	this->drawable_base = nullptr;
 }
 
-glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwDrawableObject3D> base)
+glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwDrawableObject3D> base) : glwDrawableObject3D(base->position())
 {
 	this->base = base;
 	this->drawable_base = base;
@@ -32,16 +32,6 @@ void glwCompoundObject3D::RemoveObject(std::shared_ptr<glwObject3D> object)
 {
 	drawables.erase(std::remove(drawables.begin(), drawables.end(), object), drawables.end());
 	undrawables.erase(std::remove(undrawables.begin(), undrawables.end(), object), undrawables.end());
-}
-
-vec3 & glwCompoundObject3D::position()
-{
-	return base->position();
-}
-
-mat4x4 & glwCompoundObject3D::model()
-{
-	return base->model();
 }
 
 void glwCompoundObject3D::Draw(glwShader & shader, mat4x4 model)

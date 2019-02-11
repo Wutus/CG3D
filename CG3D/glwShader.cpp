@@ -7,7 +7,7 @@
 #include <sstream>
 #include <iostream>
 
-glwShader::glwShader(const char* vertexPath, const char* fragmentPath)
+glwShader::glwShader(std::string vertexPath, std::string fragmentPath)
 {
 	// 1. retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;

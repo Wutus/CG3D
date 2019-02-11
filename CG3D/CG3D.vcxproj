@@ -159,15 +159,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="glwAdvancedShader.h" />
     <ClInclude Include="glwCamera.h" />
+    <ClInclude Include="glwDirectionalLight.h" />
     <ClInclude Include="glwDrawable.h" />
     <ClInclude Include="glwDrawableObject3D.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glwCompoundObject3D.h" />
+    <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
+    <ClInclude Include="glwPointLight.h" />
     <ClInclude Include="glwProjection.h" />
     <ClInclude Include="glwShader.h" />
+    <ClInclude Include="glwSpotLight.h" />
     <ClInclude Include="glwWindow.h" />
     <ClInclude Include="KHR\khrplatform.h" />
     <ClInclude Include="glwObject3D.h" />
@@ -176,16 +181,21 @@
     <ClInclude Include="glwTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="glwAdvancedShader.cpp" />
     <ClCompile Include="glwCamera.cpp" />
     <ClCompile Include="CG3D.cpp" />
+    <ClCompile Include="glwDirectionalLight.cpp" />
     <ClCompile Include="glwDrawable.cpp" />
     <ClCompile Include="glwDrawableObject3D.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="glwCompoundObject3D.cpp" />
+    <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />
+    <ClCompile Include="glwPointLight.cpp" />
     <ClCompile Include="glwProjection.cpp" />
     <ClCompile Include="glwShader.cpp" />
+    <ClCompile Include="glwSpotLight.cpp" />
     <ClCompile Include="glwWindow.cpp" />
     <ClCompile Include="glwObject3D.cpp" />
     <ClCompile Include="pch.cpp">

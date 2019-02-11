@@ -21,14 +21,11 @@ public:
 
 	/*  Functions   */
 	// constructor, expects a filepath to a 3D model.
-	glwModel(std::string const &path, bool gamma = false);
+	glwModel(std::string const &path, vec3 pos, mat4x4 internal = mat4x4(1.0f) ,bool gamma = false);
 
 	// draws the model, and thus all its meshes
 	void Draw(glwShader & shader, mat4x4 model = mat4x4(1.0f)) override;
 
-	// Inherited via glwDrawableObject3D
-	virtual vec3 & position() override;
-	virtual mat4x4 & model() override;
 	mat4x4 internal;
 private:
 	/*  Functions   */
