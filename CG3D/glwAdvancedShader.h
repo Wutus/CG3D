@@ -4,6 +4,7 @@
 #include "glwPointLight.h"
 #include "glwDirectionalLight.h"
 #include "glwSpotLight.h"
+#include "glwProjection.h"
 #include <memory>
 #include <string>
 
@@ -17,6 +18,7 @@ public:
 	void addPointLight(const glwPointLight & pointLight);
 	void addSpotLight(const glwSpotLight & pointLight);
 	void addDirectionalLight(const glwDirectionalLight & pointLight);
+	void setProjection(const glwProjection & projection);
 	void resetLights();
 private:
 	int pointlights;
