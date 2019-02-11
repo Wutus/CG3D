@@ -41,7 +41,7 @@ int main()
 	glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f));
 	glwSpotLight sLight(vec3(1.0f, 0.0f, 0.0f), vec3(1.0f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), vec3(-0.25f, 13.25f, 5.0f), vec3(0.0f, 0.0f, -1.0f));
 
-	std::shared_ptr<glwModel> suit_model(new glwModel("resources/streetlamp/StreetLamp.obj"));
+	std::shared_ptr<glwModel> suit_model(new glwModel("resources/car_models/car_green.obj"));
 	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f)));
 	//camera.LookAt(suit);
 	shader.use();
@@ -56,7 +56,7 @@ int main()
 		lastFrame = currentFrame;
 
 		shader.resetLights();
-		glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position(), vec3(1.0f, 1.0f, 1.0f));
+		glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position());
 		shader.addPointLight(pLight);
 
 		processInput(window.window);
