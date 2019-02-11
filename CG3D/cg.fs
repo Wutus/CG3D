@@ -61,16 +61,9 @@ vec3 DistVec(float distance);
 
 void main()
 {    
-    // properties
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 result = vec3(0.0f);
-    // == =====================================================
-    // Our lighting is set up in 3 phases: directional, point lights and an optional flashlight
-    // For each phase, a calculate function is defined that calculates the corresponding color
-    // per lamp. In the main() function we take all the calculated colors and sum them up for
-    // this fragment's final color.
-    // == =====================================================
     // phase 1: directional lighting
     for(int i = 0; i < dirLightSize; ++i)
     {
@@ -87,6 +80,7 @@ void main()
         result += CalcSpotLight(spotLights[i], norm, FragPos, viewDir);
     }
     FragColor = vec4(result, 1.0);
+    //FragColor = vec4(1.0);
 }
 
 // calculates the color when using a directional light.
