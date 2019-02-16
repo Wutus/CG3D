@@ -38,10 +38,11 @@ int main()
 	glfwSetCursorPosCallback(window.window, mouse_callback);
 	glfwSetScrollCallback(window.window, scroll_callback);
 
-	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f));
+	//glwDirectionalLight dLight(vec3(0.0f, 1.0f, 0.0f), vec3(0.01f, 0.01f, 0.01f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, -0.2f, 1.0f));
+	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f));
 
 	std::shared_ptr<glwModel> suit_model(new glwModel("resources/car_models/car_green.obj"));
-	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f)));
+	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), scale(mat4x4(1.0f),vec3(0.25f))));
 	//camera.LookAt(suit);
 	shader.use();
 	//shader.addDirectionalLight(dLight);
@@ -55,18 +56,17 @@ int main()
 		lastFrame = currentFrame;
 
 		shader.resetLights();
-		//glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position());
-		//shader.addPointLight(pLight);
-		//glwSpotLight sLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position(), camera.Front);
+		glwSpotLight slight(vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), camera.position(), camera.Front, 0.0f,30.0f);
+		shader.addSpotLight(slight);
+
 
 		processInput(window.window);
-		glwSpotLight sLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), camera.position(), camera.Front);
-		shader.addSpotLight(sLight);
-		glClearColor(0.2f, 0.3f, 0.1f, 1.0f);
+		glClearColor(0.1f, 0.2f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glwProjection projection(SCR_WIDTH, SCR_HEIGHT, camera.Zoom);
 		shader.setCamera(camera);
 		shader.setProjection(projection);
+		suit->Translate(vec3(0.01f, 0.0f, 0.0f));
 		suit->Draw(shader);
 		window.SwapBuffers();
 		glfwPollEvents();

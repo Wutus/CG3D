@@ -59,7 +59,7 @@ void glwAdvancedShader::addSpotLight(const glwSpotLight & spotLight)
 
 void glwAdvancedShader::addDirectionalLight(const glwDirectionalLight & dirLight)
 {
-	string path = getLightPath(SPOTLIGHT);
+	string path = getLightPath(DIRLIGHT);
 	addLightSource(path, dirLight);
 
 	setVec3(path + ".direction", dirLight.direction);
