@@ -38,8 +38,7 @@ int main()
 	glfwSetCursorPosCallback(window.window, mouse_callback);
 	glfwSetScrollCallback(window.window, scroll_callback);
 
-	glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f));
-	glwSpotLight sLight(vec3(1.0f, 0.0f, 0.0f), vec3(1.0f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), vec3(-0.25f, 13.25f, 5.0f), vec3(0.0f, 0.0f, -1.0f));
+	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f));
 
 	std::shared_ptr<glwModel> suit_model(new glwModel("resources/car_models/car_green.obj"));
 	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f)));
@@ -50,16 +49,19 @@ int main()
 
 	while (!window.ShouldClose())
 	{
-		cout << "Camera pos: " << camera.position().x << " " << camera.position().y << " " << camera.position().z << " front: " << camera.Front.x << " " << camera.Front.y << " " << camera.Front.z << endl;
+		//cout << "Camera pos: " << camera.position().x << " " << camera.position().y << " " << camera.position().z << " front: " << camera.Front.x << " " << camera.Front.y << " " << camera.Front.z << endl;
 		float currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
 		shader.resetLights();
-		glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position());
-		shader.addPointLight(pLight);
+		//glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position());
+		//shader.addPointLight(pLight);
+		//glwSpotLight sLight(vec3(1.0f, 1.0f, 1.0f), vec3(0.5f, 0.5f, 0.5f), vec3(0.2f, 0.2f, 0.2f), vec3(0.4f, 0.4f, 0.4f), camera.position(), camera.Front);
 
 		processInput(window.window);
+		glwSpotLight sLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), camera.position(), camera.Front);
+		shader.addSpotLight(sLight);
 		glClearColor(0.2f, 0.3f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glwProjection projection(SCR_WIDTH, SCR_HEIGHT, camera.Zoom);

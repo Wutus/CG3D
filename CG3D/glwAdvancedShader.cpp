@@ -50,8 +50,8 @@ void glwAdvancedShader::addSpotLight(const glwSpotLight & spotLight)
 	setVec3(path + ".position", spotLight.position());
 	setVec3(path + ".distanceFactor", spotLight.distanceFactor);
 	setVec3(path + ".direction", spotLight.direction);
-	setFloat(path + ".cutOff", radians(spotLight.cutOff));
-	setFloat(path + ".outerCutOff", radians(spotLight.outerCutOff));
+	setFloat(path + ".cutOff", cos(radians(spotLight.cutOff)));
+	setFloat(path + ".outerCutOff", cos(radians(spotLight.outerCutOff)));
 
 	++spotlights;
 	setInt(SPOTLIGHTSIZE, spotlights);

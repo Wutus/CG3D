@@ -13,8 +13,5 @@ public:
 	vec3 direction;
 	float cutOff;
 	float outerCutOff;
-private:
-	mat4x4 _model;
-	vec3 _pos;
 };
 

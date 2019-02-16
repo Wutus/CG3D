@@ -63,7 +63,7 @@ void main()
 {    
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
-    vec3 result = vec3(0.0f);
+    vec3 result = vec3(0.0);
     // phase 1: directional lighting
     for(int i = 0; i < dirLightSize; ++i)
     {
@@ -134,7 +134,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     // attenuation
     float distance = length(light.position - fragPos);
     vec3 distanceVec = DistVec(distance);
-    float attenuation = 1.0 / dot(distanceVec, light.distanceFactor);   
+    float attenuation = 1.0 / dot(distanceVec, light.distanceFactor);
     // spotlight intensity
     float theta = dot(lightDir, normalize(-light.direction)); 
     float epsilon = light.cutOff - light.outerCutOff;
