@@ -173,12 +173,14 @@
     <ClInclude Include="glwMovingCamera.h" />
     <ClInclude Include="glwPointLight.h" />
     <ClInclude Include="glwProjection.h" />
+    <ClInclude Include="glwScene.h" />
     <ClInclude Include="glwShader.h" />
     <ClInclude Include="glwSpotLight.h" />
     <ClInclude Include="glwWindow.h" />
     <ClInclude Include="KHR\khrplatform.h" />
     <ClInclude Include="glwObject3D.h" />
     <ClInclude Include="glwMaterial.h" />
+    <ClInclude Include="ObjectSerializer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="glwTexture2D.h" />
@@ -199,11 +201,13 @@
     <ClCompile Include="glwMovingCamera.cpp" />
     <ClCompile Include="glwPointLight.cpp" />
     <ClCompile Include="glwProjection.cpp" />
+    <ClCompile Include="glwScene.cpp" />
     <ClCompile Include="glwShader.cpp" />
     <ClCompile Include="glwSpotLight.cpp" />
     <ClCompile Include="glwWindow.cpp" />
     <ClCompile Include="glwObject3D.cpp" />
     <ClCompile Include="glwMaterial.cpp" />
+    <ClCompile Include="ObjectSerializer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

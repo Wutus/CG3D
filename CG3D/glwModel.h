@@ -19,6 +19,7 @@ public:
 	std::vector<std::shared_ptr<glwTexture2D>> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
 	std::vector<glwMesh> meshes;
 	std::string directory;
+	std::string path;
 	bool gammaCorrection;
 
 	/*  Functions   */

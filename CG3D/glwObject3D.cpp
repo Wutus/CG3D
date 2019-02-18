@@ -3,10 +3,11 @@
 
 using namespace glm;
 
-glwObject3D::glwObject3D(vec3 pos)
+glwObject3D::glwObject3D(vec3 pos, const std::string & name)
 {
 	_pos = pos;
 	_model = translate(mat4x4(1.0f), pos);
+	this->name = name == ""? getNewName() : name;
 }
 
 glwObject3D::~glwObject3D()
@@ -37,4 +38,9 @@ void glwObject3D::Translate(vec3 translation)
 void glwObject3D::Scale(vec3 coef)
 {
 	_model = scale(model(), coef);
+}
+
+std::string glwObject3D::getNewName()
+{
+	return "obj" + std::to_string(counter++);
 }

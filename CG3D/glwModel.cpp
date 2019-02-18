@@ -25,6 +25,7 @@ using namespace std;
 glwModel::glwModel(std::string const &path, bool gamma) : gammaCorrection(gamma)
 {
 	loadModel(path);
+	this->path = path;
 }
 
 void glwModel::Draw(glwShader & shader, mat4x4 model)

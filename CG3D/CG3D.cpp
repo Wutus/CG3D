@@ -41,11 +41,11 @@ int main()
 	//glwDirectionalLight dLight(vec3(0.0f, 1.0f, 0.0f), vec3(0.01f, 0.01f, 0.01f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, -0.2f, 1.0f));
 	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f));
 
-	std::shared_ptr<glwModel> suit_model(new glwModel("resources/car_models/car_green.obj"));
-	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), scale(mat4x4(1.0f),vec3(0.25f))));
+
+	shared_ptr<glwModel> suit_model(new glwModel("resources/track2/track01_.3ds"));
+	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), rotate(scale(mat4x4(1.0f),vec3(0.25f)), radians(90.0f), vec3(0.0f,0.0f,1.0f))));
 	//camera.LookAt(suit);
 	shader.use();
-	//shader.addDirectionalLight(dLight);
 	//shader.addSpotLight(sLight);
 
 	while (!window.ShouldClose())
@@ -56,9 +56,10 @@ int main()
 		lastFrame = currentFrame;
 
 		shader.resetLights();
-		glwSpotLight slight(vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), camera.position(), camera.Front, 0.0f,30.0f);
-		shader.addSpotLight(slight);
-
+		//glwSpotLight slight(vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), camera.position(), camera.Front, 0.0f,30.0f);
+		//shader.addSpotLight(slight);
+		glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), camera.position());
+		shader.addPointLight(pLight);
 
 		processInput(window.window);
 		glClearColor(0.1f, 0.2f, 0.1f, 1.0f);
@@ -66,7 +67,7 @@ int main()
 		glwProjection projection(SCR_WIDTH, SCR_HEIGHT, camera.Zoom);
 		shader.setCamera(camera);
 		shader.setProjection(projection);
-		suit->Translate(vec3(0.01f, 0.0f, 0.0f));
+		//suit->Translate(vec3(0.01f, 0.0f, 0.0f));
 		suit->Draw(shader);
 		window.SwapBuffers();
 		glfwPollEvents();
@@ -80,6 +81,11 @@ void processInput(GLFWwindow *window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+
+	if (glfwGetKey(window, GLFW_KEY_F12) == GLFW_PRESS)
+	{
+		
+	}
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		camera.ProcessKeyboard(FORWARD, deltaTime);

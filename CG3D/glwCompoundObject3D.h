@@ -7,14 +7,14 @@
 class glwCompoundObject3D : public glwDrawableObject3D
 {
 public:
-	glwCompoundObject3D(std::shared_ptr<glwObject3D> base);
-	glwCompoundObject3D(std::shared_ptr<glwDrawableObject3D> base);
+	glwCompoundObject3D(std::shared_ptr<glwObject3D> base, const std::string & name = "");
+	glwCompoundObject3D(std::shared_ptr<glwDrawableObject3D> base, const std::string & name = "");
 	~glwCompoundObject3D();
 	
 	void AddDrawable(std::shared_ptr<glwDrawableObject3D> drawable);
 	void AddUndrawable(std::shared_ptr<glwObject3D> undrawable);
 	void RemoveObject(std::shared_ptr<glwObject3D> object);
-
+	std::shared_ptr<glwObject3D> Find(const std::string & name);
 	// Inherited via glwDrawableObject3D
 	virtual void Draw(glwShader & shader, mat4x4 model = mat4x4(1.0f)) override;
 private:
