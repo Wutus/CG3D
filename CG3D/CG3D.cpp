@@ -43,7 +43,7 @@ int main()
 
 
 	shared_ptr<glwModel> suit_model(new glwModel("resources/track2/track01_.3ds"));
-	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), rotate(scale(mat4x4(1.0f),vec3(0.25f)), radians(90.0f), vec3(0.0f,0.0f,1.0f))));
+	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), "car_model",rotate(scale(mat4x4(1.0f),vec3(0.25f)), radians(90.0f), vec3(0.0f,0.0f,1.0f))));
 	//camera.LookAt(suit);
 	shader.use();
 	//shader.addSpotLight(sLight);

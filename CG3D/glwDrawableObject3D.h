@@ -6,7 +6,8 @@
 class glwDrawableObject3D : public glwObject3D, public glwDrawable
 {
 public:
-	glwDrawableObject3D(vec3 pos, const string & name = "");
+	glwDrawableObject3D(vec3 pos, const std::string & name = "");
+	virtual glwDrawableObject3D *Clone(const std::string & name = "") = 0;
 	virtual ~glwDrawableObject3D();
 };
 

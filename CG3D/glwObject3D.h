@@ -12,6 +12,7 @@ public:
 	glwObject3D(vec3 pos, const std::string & name = "");
 	glwObject3D(const glwObject3D &) = delete;
 	virtual ~glwObject3D();
+	virtual glwObject3D *Clone(const std::string & name = "");
 	const vec3 & position() const;
 	const mat4x4 & model() const;
 	void Rotate(float degrees, vec3 axis);

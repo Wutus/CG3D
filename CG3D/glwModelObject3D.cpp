@@ -16,3 +16,10 @@ void glwModelObject3D::Draw(glwShader & shader, mat4x4 model)
 	model = model * this->model();
 	_model3d->Draw(shader, model);
 }
+
+glwModelObject3D *glwModelObject3D::Clone(const std::string & name)
+{
+	glwModelObject3D *res = new glwModelObject3D(_model3d, _pos, name, _internal);
+	res->_model = _model;
+	return res;
+}

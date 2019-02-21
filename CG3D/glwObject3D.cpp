@@ -3,6 +3,8 @@
 
 using namespace glm;
 
+unsigned int glwObject3D::counter = 0;
+
 glwObject3D::glwObject3D(vec3 pos, const std::string & name)
 {
 	_pos = pos;
@@ -12,6 +14,11 @@ glwObject3D::glwObject3D(vec3 pos, const std::string & name)
 
 glwObject3D::~glwObject3D()
 {
+}
+
+glwObject3D *glwObject3D::Clone(const std::string & name)
+{
+	return new glwObject3D(position(), name);
 }
 
 const vec3 & glwObject3D::position() const

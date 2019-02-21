@@ -11,3 +11,10 @@ glwSpotLight::glwSpotLight(vec3 color, vec3 ambient, vec3 diffuse, vec3 specular
 glwSpotLight::~glwSpotLight()
 {
 }
+
+glwSpotLight *glwSpotLight::Clone(const std::string & name)
+{
+	glwSpotLight *res = new glwSpotLight(color, ambient, diffuse, specular, pos, name, dir, cutOff, outerCutOff, distanceFactor);
+	res->_model = _model;
+	return res;
+}

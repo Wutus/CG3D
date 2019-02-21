@@ -13,7 +13,7 @@
 class glwScene
 {
 public:
-	glwScene();
+	glwScene(const std::string & name);
 	~glwScene();
 	static std::shared_ptr<glwScene> LoadFromFile(const std::string & fileName);
 	glwCompoundObject3D Objects;
@@ -25,6 +25,7 @@ public:
 	void SetShader(std::shared_ptr<glwAdvancedShader> shader);
 	void Draw();
 	void SaveToFile(const std::string & fileName);
+	std::string name;
 private:
 
 };
