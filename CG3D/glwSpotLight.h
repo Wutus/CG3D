@@ -12,5 +12,8 @@ public:
 	vec3 direction;
 	float cutOff;
 	float outerCutOff;
+
+	// Inherited via glwLightSource
+	virtual void PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f)) override;
 };
 

@@ -16,3 +16,8 @@ glwPointLight * glwPointLight::Clone(const std::string & name)
 	res->_model = _model;
 	return res;
 }
+
+void glwPointLight::PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f))
+{
+	shader.addPointLight(*this, model);
+}

@@ -18,10 +18,10 @@ class glwAdvancedShader :
 public:
 	glwAdvancedShader(std::string vertexPath, std::string fragmentPath);
 	~glwAdvancedShader();
-	void setCamera(const glwCamera & camera);
-	void addPointLight(const glwPointLight & pointLight);
-	void addSpotLight(const glwSpotLight & pointLight);
-	void addDirectionalLight(const glwDirectionalLight & pointLight);
+	void setCamera(const glwCamera & camera, mat4x4 system = mat4x4(1.0f));
+	void addPointLight(const glwPointLight & pointLight, mat4x4 system = mat4x4(1.0f));
+	void addSpotLight(const glwSpotLight & spotLight, mat4x4 system = mat4x4(1.0f));
+	void addDirectionalLight(const glwDirectionalLight & dirLight);
 	void setProjection(const glwProjection & projection);
 	void setModelMatrix(const mat4x4 & model);
 	void setMaterial(const glwMaterial & material);

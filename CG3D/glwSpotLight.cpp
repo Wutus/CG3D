@@ -14,7 +14,12 @@ glwSpotLight::~glwSpotLight()
 
 glwSpotLight *glwSpotLight::Clone(const std::string & name)
 {
-	glwSpotLight *res = new glwSpotLight(color, ambient, diffuse, specular, pos, name, dir, cutOff, outerCutOff, distanceFactor);
+	glwSpotLight *res = new glwSpotLight(color, ambient, diffuse, specular, _pos, name, direction, cutOff, outerCutOff, distanceFactor);
 	res->_model = _model;
 	return res;
+}
+
+void glwSpotLight::PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f))
+{
+	shader.addSpotLight(*this, model);
 }

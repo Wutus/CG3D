@@ -24,32 +24,32 @@ glwAdvancedShader::~glwAdvancedShader()
 {
 }
 
-void glwAdvancedShader::setCamera(const glwCamera & camera)
+void glwAdvancedShader::setCamera(const glwCamera & camera, mat4x4 system)
 {
-	setMat4(VIEW, camera.model());
-	setVec3(VIEWPOS, camera.position());
+	setMat4(VIEW, system*camera.model());
+	setVec3(VIEWPOS, vec3(system*vec4(camera.position(), 1.0f)));
 }
 
-void glwAdvancedShader::addPointLight(const glwPointLight & pointLight)
+void glwAdvancedShader::addPointLight(const glwPointLight & pointLight, mat4x4 system)
 {
 	string path = getLightPath(POINTLIGHT);
 	addLightSource(path, pointLight);
 
-	setVec3(path + ".position", pointLight.position());
+	setVec3(path + ".position", vec3(system*vec4(pointLight.position(), 1.0f)));
 	setVec3(path + ".distanceFactor", pointLight.distanceFactor);
 
 	++pointlights;
 	setInt(POINTLIGHTSIZE, pointlights);
 }
 
-void glwAdvancedShader::addSpotLight(const glwSpotLight & spotLight)
+void glwAdvancedShader::addSpotLight(const glwSpotLight & spotLight, mat4x4 system)
 {
 	string path = getLightPath(SPOTLIGHT);
 	addLightSource(path, spotLight);
 
-	setVec3(path + ".position", spotLight.position());
+	setVec3(path + ".position", vec3(system*vec4(spotLight.position(),1.0f)));
 	setVec3(path + ".distanceFactor", spotLight.distanceFactor);
-	setVec3(path + ".direction", spotLight.direction);
+	setVec3(path + ".direction", vec3(system*vec4(spotLight.direction, 1.0f)));
 	setFloat(path + ".cutOff", cos(radians(spotLight.cutOff)));
 	setFloat(path + ".outerCutOff", cos(radians(spotLight.outerCutOff)));
 

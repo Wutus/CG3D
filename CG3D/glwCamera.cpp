@@ -29,3 +29,8 @@ void glwCamera::LookAt(vec3 target)
 {
 	_model = glm::lookAt(_pos, target, up);
 }
+
+void glwCamera::PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f))
+{
+	shader.setCamera(*this, model);
+}

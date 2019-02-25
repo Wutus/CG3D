@@ -11,3 +11,8 @@ glwDirectionalLight::glwDirectionalLight(vec3 color, vec3 ambient, vec3 diffuse,
 glwDirectionalLight::~glwDirectionalLight()
 {
 }
+
+void glwDirectionalLight::PreDraw(glwAdvancedShader & shader, mat4x4 model)
+{
+	shader.addDirectionalLight(*this);
+}

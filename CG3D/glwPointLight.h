@@ -1,6 +1,7 @@
 #pragma once
 #include "glwLightSource.h"
 #include "glwObject3D.h"
+#include "glwAdvancedShader.h"
 
 class glwPointLight : public glwLightSource, public glwObject3D
 {
@@ -9,5 +10,8 @@ public:
 	~glwPointLight();
 	virtual glwPointLight *Clone(const std::string & name = "") override;
 	vec3 distanceFactor;
+
+	// Inherited via glwLightSource
+	virtual void PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f)) override;
 };
 
