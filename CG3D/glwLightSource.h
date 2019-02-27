@@ -1,8 +1,8 @@
 #pragma once
-#include "glwObject3D.h"
 #include "glwPreDrawable.h"
+#include "glm/gtc/type_ptr.hpp"
 
-using namespace std;
+using namespace glm;
 
 class glwLightSource : public glwPreDrawable
 {
@@ -14,5 +14,8 @@ public:
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
+
+	// Inherited via glwPreDrawable
+	virtual void PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f)) = 0;
 };
 

@@ -1,4 +1,5 @@
 #include "glwAdvancedShader.h"
+
 #include <string>
 
 using namespace std;
@@ -109,5 +110,7 @@ string glwAdvancedShader::getLightPath(LIGHTTYPE type)
 		return SPOTLIGHTS + "[" + to_string(spotlights) + "]";
 	case DIRLIGHT:
 		return DIRLIGHTS + "[" + to_string(dirlights) + "]";
+	default:
+		return "";
 	}
 }

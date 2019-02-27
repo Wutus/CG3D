@@ -12,8 +12,9 @@
 #include <memory>
 #include <string>
 
-class glwAdvancedShader :
-	public glwShader
+using namespace glm;
+
+class glwAdvancedShader : public glwShader
 {
 public:
 	glwAdvancedShader(std::string vertexPath, std::string fragmentPath);
@@ -30,12 +31,11 @@ private:
 	int pointlights;
 	int spotlights;
 	int dirlights;
-	void addLightSource(string lightPath, const glwLightSource & lightSource);
+	void addLightSource(std::string lightPath, const glwLightSource & lightSource);
 	enum LIGHTTYPE {
 		POINTLIGHT,
 		SPOTLIGHT,
 		DIRLIGHT
 	};
-	string getLightPath(LIGHTTYPE type);
+	std::string getLightPath(LIGHTTYPE type);
 };
-

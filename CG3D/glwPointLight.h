@@ -1,7 +1,6 @@
 #pragma once
 #include "glwLightSource.h"
 #include "glwObject3D.h"
-#include "glwAdvancedShader.h"
 
 class glwPointLight : public glwLightSource, public glwObject3D
 {

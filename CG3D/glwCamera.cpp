@@ -1,4 +1,5 @@
 #include "glwCamera.h"
+#include "glwAdvancedShader.h"
 
 const vec3 glwCamera::up = vec3(0.0f, 1.0f, 0.0f);
 
@@ -30,7 +31,7 @@ void glwCamera::LookAt(vec3 target)
 	_model = glm::lookAt(_pos, target, up);
 }
 
-void glwCamera::PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f))
+void glwCamera::PreDraw(glwAdvancedShader & shader, mat4x4 model)
 {
 	shader.setCamera(*this, model);
 }

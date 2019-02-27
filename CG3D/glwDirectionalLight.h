@@ -1,6 +1,5 @@
 #pragma once
 #include "glwLightSource.h"
-#include "glwAdvancedShader.h"
 
 class glwDirectionalLight :	public glwLightSource
 {

@@ -1,4 +1,5 @@
 #include "glwSpotLight.h"
+#include "glwAdvancedShader.h"
 
 glwSpotLight::glwSpotLight(vec3 color, vec3 ambient, vec3 diffuse, vec3 specular, vec3 pos, const std::string & name, vec3 dir, float cutOff, float outerCutOff, vec3 distanceFactor) : glwLightSource(color, ambient, diffuse, specular), glwObject3D(pos, name)
 {
@@ -19,7 +20,7 @@ glwSpotLight *glwSpotLight::Clone(const std::string & name)
 	return res;
 }
 
-void glwSpotLight::PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f))
+void glwSpotLight::PreDraw(glwAdvancedShader & shader, mat4x4 model)
 {
 	shader.addSpotLight(*this, model);
 }

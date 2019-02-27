@@ -5,7 +5,7 @@
 class glwSpotLight : public glwLightSource, public glwObject3D
 {
 public:
-	glwSpotLight(vec3 color, vec3 ambient, vec3 diffuse, vec3 specular, vec3 pos, const string & name = "", vec3 dir = vec3(0.0f,-1.0f,0.0f), float cutOff = 12.5f, float outerCutOff = 15.0f, vec3 distanceFactor = vec3(1.0f,0.0f,0.0f));
+	glwSpotLight(vec3 color, vec3 ambient, vec3 diffuse, vec3 specular, vec3 pos, const std::string & name = "", vec3 dir = vec3(0.0f,-1.0f,0.0f), float cutOff = 12.5f, float outerCutOff = 15.0f, vec3 distanceFactor = vec3(1.0f,0.0f,0.0f));
 	~glwSpotLight();
 	virtual glwSpotLight *Clone(const std::string & name = "") override;
 	vec3 distanceFactor;

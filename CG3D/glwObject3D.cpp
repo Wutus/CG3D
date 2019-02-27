@@ -18,7 +18,9 @@ glwObject3D::~glwObject3D()
 
 glwObject3D *glwObject3D::Clone(const std::string & name)
 {
-	return new glwObject3D(position(), name);
+	glwObject3D *res = new glwObject3D(position(), name);
+	res->_model = _model;
+	return res;
 }
 
 const vec3 & glwObject3D::position() const
