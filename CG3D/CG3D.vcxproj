@@ -110,7 +110,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -152,7 +152,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Event.h" />
     <ClInclude Include="glwAdvancedShader.h" />
     <ClInclude Include="glwCamera.h" />
     <ClInclude Include="glwDirectionalLight.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="glwDrawableObject3D.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glwCompoundObject3D.h" />
+    <ClInclude Include="glwInputPrecessable.h" />
     <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="glwDrawableObject3D.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="glwCompoundObject3D.cpp" />
+    <ClCompile Include="glwInputPrecessable.cpp" />
     <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />

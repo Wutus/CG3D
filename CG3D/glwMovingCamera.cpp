@@ -40,6 +40,7 @@ void glwMovingCamera::ProcessKeyboard(Camera_Movement direction, float deltaTime
 
 void glwMovingCamera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
 {
+	yoffset *= -1; 
 	xoffset *= MouseSensitivity;
 	yoffset *= MouseSensitivity;
 

@@ -10,9 +10,9 @@
 
 using namespace std;
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-void processInput(GLFWwindow *window);
+static void mouse_callback(glwWindow & window, const CursorPos & pos);
+static void scroll_callback(glwWindow & window, const ScrollOffset & offset);
+static void processInput(glwWindow & window);
 
 bool firstMouse = true;
 glwMovingCamera camera(vec3(0.0f, 0.0f, 0.0f));
@@ -35,12 +35,11 @@ int main()
 	glfwSetInputMode(window.window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glEnable(GL_DEPTH_TEST);
 
-	glfwSetCursorPosCallback(window.window, mouse_callback);
-	glfwSetScrollCallback(window.window, scroll_callback);
-
 	//glwDirectionalLight dLight(vec3(0.0f, 1.0f, 0.0f), vec3(0.01f, 0.01f, 0.01f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, -0.2f, 1.0f));
 	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f));
 
+	window.mouseMoveEvent += mouse_callback;
+	window.scrollEvent += scroll_callback;
 
 	shared_ptr<glwModel> suit_model(new glwModel("resources/track2/track01_.3ds"));
 	shared_ptr<glwModelObject3D> suit(new glwModelObject3D(suit_model, vec3(0.0f), "car_model",rotate(scale(mat4x4(1.0f),vec3(0.25f)), radians(90.0f), vec3(0.0f,0.0f,1.0f))));
@@ -61,7 +60,7 @@ int main()
 		glwPointLight pLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), camera.position());
 		shader.addPointLight(pLight);
 
-		processInput(window.window);
+		processInput(window);
 		glClearColor(0.1f, 0.2f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glwProjection projection(SCR_WIDTH, SCR_HEIGHT, camera.Zoom);
@@ -77,49 +76,31 @@ int main()
 	return 0;
 }
 
-void processInput(GLFWwindow *window)
+static void processInput(glwWindow & window)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
+	if (window.GetKey(GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		window.SetShouldClose(true);
 
-	if (glfwGetKey(window, GLFW_KEY_F12) == GLFW_PRESS)
-	{
-		
-	}
-
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+	if (window.GetKey(GLFW_KEY_W) == GLFW_PRESS)
 		camera.ProcessKeyboard(FORWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+	if (window.GetKey(GLFW_KEY_S) == GLFW_PRESS)
 		camera.ProcessKeyboard(BACKWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+	if (window.GetKey(GLFW_KEY_A) == GLFW_PRESS)
 		camera.ProcessKeyboard(LEFT, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+	if (window.GetKey(GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+static void mouse_callback(glwWindow & window, const CursorPos & pos)
 {
-	if (firstMouse)
-	{
-		lastX = xpos;
-		lastY = ypos;
-		firstMouse = false;
-	}
-
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
-	lastX = xpos;
-	lastY = ypos;
-
-	camera.ProcessMouseMovement(xoffset, yoffset);
+	camera.ProcessMouseMovement(pos.x, pos.y);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+static void scroll_callback(glwWindow & window, const ScrollOffset & offset)
 {
-	camera.ProcessMouseScroll(yoffset);
+	camera.ProcessMouseScroll(offset.y);
 }

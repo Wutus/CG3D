@@ -2,8 +2,14 @@
 #include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Event.h"
 
 struct CursorPos {
+	double x;
+	double y;
+};
+
+struct ScrollOffset {
 	double x;
 	double y;
 };
@@ -16,10 +22,6 @@ enum KeyState {
 
 typedef unsigned int uint;
 
-class glwWindow;
-
-typedef void(*glwWindow_cb)(const glwWindow & window);
-
 class glwWindow
 {
 public:
@@ -31,8 +33,13 @@ public:
 	CursorPos GetCursorPos() const;
 	void SetCursorsPos(CursorPos position);
 	void SwapBuffers();
+	Event<glwWindow, CursorPos> mousePosEvent;
+	Event<glwWindow, CursorPos> mouseMoveEvent;
+	Event<glwWindow, ScrollOffset> scrollEvent;
 	GLFWwindow *window;
 private:
-	glwWindow_cb input_cb;
+	CursorPos lastCursorPos;
+	friend static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+	friend static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 };
 
