@@ -102,6 +102,9 @@
     <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="glwDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -179,12 +182,21 @@
     <ClCompile Include="glwInputPrecessable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="glwDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cg.vs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="cg.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light.fs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

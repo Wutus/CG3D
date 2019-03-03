@@ -173,6 +173,7 @@
     <ClInclude Include="glwDrawableObject3D.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glwCompoundObject3D.h" />
+    <ClInclude Include="glwDriver.h" />
     <ClInclude Include="glwInputPrecessable.h" />
     <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="glwDrawableObject3D.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="glwCompoundObject3D.cpp" />
+    <ClCompile Include="glwDriver.cpp" />
     <ClCompile Include="glwInputPrecessable.cpp" />
     <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
@@ -233,6 +235,8 @@
       <DeploymentContent>false</DeploymentContent>
     </None>
     <None Include="cg.vs" />
+    <None Include="light.fs" />
+    <None Include="light.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

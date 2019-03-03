@@ -64,6 +64,7 @@ int main()
 		glClearColor(0.1f, 0.2f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glwProjection projection(SCR_WIDTH, SCR_HEIGHT, camera.Zoom);
+		projection.PreDraw(shader);
 		shader.setCamera(camera);
 		shader.setProjection(projection);
 		//suit->Translate(vec3(0.01f, 0.0f, 0.0f));
