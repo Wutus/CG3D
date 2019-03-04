@@ -179,7 +179,7 @@
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
     <ClInclude Include="glwModelObject3D.h" />
-    <ClInclude Include="glwMovingCamera.h" />
+    <ClInclude Include="glwFreeCamera.h" />
     <ClInclude Include="glwPointLight.h" />
     <ClInclude Include="glwProjection.h" />
     <ClInclude Include="glwScene.h" />
@@ -210,7 +210,7 @@
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />
     <ClCompile Include="glwModelObject3D.cpp" />
-    <ClCompile Include="glwMovingCamera.cpp" />
+    <ClCompile Include="glwFreeCamera.cpp" />
     <ClCompile Include="glwPointLight.cpp" />
     <ClCompile Include="glwProjection.cpp" />
     <ClCompile Include="glwScene.cpp" />

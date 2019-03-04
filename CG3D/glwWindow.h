@@ -20,6 +20,12 @@ enum KeyState {
 	REPEAT = 2
 };
 
+struct FrameUpdateInfo
+{
+	unsigned long long FrameNo;
+	float DeltaTime;
+};
+
 typedef unsigned int uint;
 
 class glwWindow
@@ -33,11 +39,15 @@ public:
 	CursorPos GetCursorPos() const;
 	void SetCursorsPos(CursorPos position);
 	void SwapBuffers();
+	void Update();
 	Event<glwWindow, CursorPos> mousePosEvent;
 	Event<glwWindow, CursorPos> mouseMoveEvent;
 	Event<glwWindow, ScrollOffset> scrollEvent;
+	Event<glwWindow, FrameUpdateInfo> frameUpdateEvent;
 	GLFWwindow *window;
 private:
+	unsigned long long frame;
+	float lastTime;
 	CursorPos lastCursorPos;
 	friend static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 	friend static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);

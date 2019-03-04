@@ -38,7 +38,7 @@ void Event<Sender, Data>::operator+=(std::function<void(Sender&, const Data&)> f
 template<class Sender, class Data>
 void Event<Sender, Data>::operator-=(std::function<void(Sender&, const Data&)> func)
 {
-	callbacks.erase(std::remove(callbacks.begin(), callbacks.end(), func), callbacks.end());
+	callbacks.erase(std::remove_if(callbacks.begin(), callbacks.end(), [&func](std::function<void(Sender&, const Data&)> f) {return f.target<void(*)(Sender&, const Data&)>() == func.target<void(*)(Sender&, const Data&)>(); }), callbacks.end());
 }
 
 template<class Sender, class Data>

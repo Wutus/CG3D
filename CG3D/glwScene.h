@@ -6,6 +6,7 @@
 #include "glwCompoundObject3D.h"
 #include "glwCamera.h"
 #include "glwAdvancedShader.h"
+#include "glwProjection.h"
 
 #include <string>
 #include <memory>
@@ -21,12 +22,14 @@ public:
 	std::vector<std::shared_ptr<glwSpotLight>> spotLights;
 	std::vector<std::shared_ptr<glwPointLight>> pointLights;
 	void SetCamera(std::shared_ptr<glwCamera> camera);
-	void SetLightShader(std::shared_ptr<glwShader> lightshader);
 	void SetShader(std::shared_ptr<glwAdvancedShader> shader);
+	void SetProjection(std::shared_ptr<glwProjection> projection);
 	void Draw();
 	void SaveToFile(const std::string & fileName);
 	std::string name;
 private:
-
+	std::shared_ptr<glwCamera> camera;
+	std::shared_ptr<glwAdvancedShader> shader;
+	std::shared_ptr<glwProjection> projection;
 };
 

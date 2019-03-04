@@ -50,7 +50,7 @@ static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	win.scrollEvent.Invoke(offset);
 }
 
-glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*this), mousePosEvent(*this) ,mouseMoveEvent(*this)
+glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*this), mousePosEvent(*this), mouseMoveEvent(*this), frameUpdateEvent(*this)
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -78,6 +78,8 @@ glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*
 	g_data.act_win = this;
 	lastCursorPos.x = -1;
 	lastCursorPos.y = -1;
+	lastTime = glfwGetTime();
+	frame = 0;
 }
 
 
@@ -116,4 +118,16 @@ void glwWindow::SetCursorsPos(CursorPos position)
 void glwWindow::SwapBuffers()
 {
 	glfwSwapBuffers(window);
+}
+
+void glwWindow::Update()
+{
+	float now = glfwGetTime();
+	FrameUpdateInfo info;
+	info.DeltaTime = now - lastTime;
+	info.FrameNo = frame++;
+
+	frameUpdateEvent.Invoke(info);
+
+	lastTime = now;
 }
