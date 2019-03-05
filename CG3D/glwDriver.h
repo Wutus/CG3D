@@ -5,7 +5,7 @@
 class glwDriver
 {
 public:
-	glwDriver();
+	glwDriver(glwWindow & window, std::shared_ptr<glwObject3D> object);
 	~glwDriver();
 };
 

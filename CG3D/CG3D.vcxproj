@@ -174,7 +174,7 @@
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glwCompoundObject3D.h" />
     <ClInclude Include="glwDriver.h" />
-    <ClInclude Include="glwInputPrecessable.h" />
+    <ClInclude Include="glwInputProcessable.h" />
     <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
@@ -205,7 +205,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="glwCompoundObject3D.cpp" />
     <ClCompile Include="glwDriver.cpp" />
-    <ClCompile Include="glwInputPrecessable.cpp" />
+    <ClCompile Include="glwInputProcessable.cpp" />
     <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />
