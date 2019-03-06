@@ -1,10 +1,11 @@
 #pragma once
 
-#include "glwDrawableObject3D.h"
+#include "glwDrawable.h"
+#include "glwObject3D.h"
 #include "glwModel.h"
 #include <memory>
 
-class glwModelObject3D : public glwDrawableObject3D
+class glwModelObject3D : public glwDrawable, public glwObject3D
 {
 public:
 	glwModelObject3D(std::shared_ptr<glwModel> model3d, vec3 position, const std::string & name = "", mat4x4 internal = mat4x4(1.0f));

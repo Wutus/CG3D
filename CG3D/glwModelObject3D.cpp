@@ -1,6 +1,6 @@
 #include "glwModelObject3D.h"
 
-glwModelObject3D::glwModelObject3D(std::shared_ptr<glwModel> model3d, vec3 position, const std::string & name, mat4x4 internal) : glwDrawableObject3D(position, name)
+glwModelObject3D::glwModelObject3D(std::shared_ptr<glwModel> model3d, vec3 position, const std::string & name, mat4x4 internal) : glwObject3D(position, name)
 {
 	_model3d = model3d;
 	_internal = internal;

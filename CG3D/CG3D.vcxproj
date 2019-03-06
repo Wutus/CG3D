@@ -170,11 +170,9 @@
     <ClInclude Include="glwCamera.h" />
     <ClInclude Include="glwDirectionalLight.h" />
     <ClInclude Include="glwDrawable.h" />
-    <ClInclude Include="glwDrawableObject3D.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="glwCompoundObject3D.h" />
     <ClInclude Include="glwDriver.h" />
-    <ClInclude Include="glwInputProcessable.h" />
     <ClInclude Include="glwLightSource.h" />
     <ClInclude Include="glwMesh.h" />
     <ClInclude Include="glwModel.h" />
@@ -201,11 +199,9 @@
     <ClCompile Include="CG3D.cpp" />
     <ClCompile Include="glwDirectionalLight.cpp" />
     <ClCompile Include="glwDrawable.cpp" />
-    <ClCompile Include="glwDrawableObject3D.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="glwCompoundObject3D.cpp" />
     <ClCompile Include="glwDriver.cpp" />
-    <ClCompile Include="glwInputProcessable.cpp" />
     <ClCompile Include="glwLightSource.cpp" />
     <ClCompile Include="glwMesh.cpp" />
     <ClCompile Include="glwModel.cpp" />

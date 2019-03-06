@@ -8,19 +8,19 @@ const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
 
 
-glwFreeCamera::glwFreeCamera(vec3 pos, glwWindow & window) : glwCamera(pos), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window) : glwCamera(pos), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
 }
 
-glwFreeCamera::glwFreeCamera(vec3 pos, vec3 target, glwWindow & window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
 }
 
-glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, glwWindow & window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
@@ -85,9 +85,10 @@ void glwFreeCamera::ProcessMouseScroll(float yoffset)
 
 glwFreeCamera::~glwFreeCamera()
 {
-	win->mouseMoveEvent -= mouseMoveCb;
-	win->scrollEvent -= scrollCb;
-	win->frameUpdateEvent -= updateCb;
+	std::shared_ptr<glwWindow> w = win.lock();
+	w->mouseMoveEvent -= mouseMoveCb;
+	w->scrollEvent -= scrollCb;
+	w->frameUpdateEvent -= updateCb;
 }
 
 void glwFreeCamera::updateCameraVectors()
@@ -112,12 +113,12 @@ void glwFreeCamera::InitDefaults()
 	updateCameraVectors();
 }
 
-void glwFreeCamera::connectToEvents(glwWindow & window)
+void glwFreeCamera::connectToEvents(std::shared_ptr<glwWindow> window)
 {
-	win = &window;
+	win = window;
 	mouseMoveCb = [this](glwWindow & w, const CursorPos & cp) {this->ProcessMouseMovement(cp.x, cp.y); };
 	scrollCb = [this](glwWindow & w, const ScrollOffset & so) {this->ProcessMouseScroll(so.y); };
-	updateCb = [this](glwWindow & w, const FrameUpdateInfo & info) {	
+	updateCb = [this](glwWindow & w, const FrameUpdateInfo & info) {
 		if (w.GetKey(GLFW_KEY_W) == GLFW_PRESS)
 			this->ProcessKeyboard(FORWARD, info.DeltaTime);
 		if (w.GetKey(GLFW_KEY_S) == GLFW_PRESS)
@@ -125,10 +126,10 @@ void glwFreeCamera::connectToEvents(glwWindow & window)
 		if (w.GetKey(GLFW_KEY_A) == GLFW_PRESS)
 			this->ProcessKeyboard(LEFT, info.DeltaTime);
 		if (w.GetKey(GLFW_KEY_D) == GLFW_PRESS)
-			this->ProcessKeyboard(RIGHT, info.DeltaTime); 
+			this->ProcessKeyboard(RIGHT, info.DeltaTime);
 	};
 
-	window.mouseMoveEvent += mouseMoveCb;
-	window.scrollEvent += scrollCb;
-	window.frameUpdateEvent += updateCb;
+	window->mouseMoveEvent += mouseMoveCb;
+	window->scrollEvent += scrollCb;
+	window->frameUpdateEvent += updateCb;
 }

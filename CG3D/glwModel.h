@@ -4,7 +4,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "glwDrawableObject3D.h"
+#include "glwDrawable.h"
+#include "glwObject3D.h"
 #include "glwMesh.h"
 #include "glwShader.h"
 #include "glwTexture2D.h"

@@ -72,7 +72,7 @@ glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
 	}
-
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	g_data.act_win = this;

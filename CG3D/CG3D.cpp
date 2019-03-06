@@ -17,17 +17,16 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
-	glwWindow window(SCR_WIDTH, SCR_HEIGHT, "CG3D");
+	shared_ptr<glwWindow> window(new glwWindow(SCR_WIDTH, SCR_HEIGHT, "CG3D"));
 	glwAdvancedShader shader("cg.vs", "cg.fs");
 	glwFreeCamera camera(vec3(0.0f, 0.0f, 0.0f), window);
 
-	glfwSetInputMode(window.window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glEnable(GL_DEPTH_TEST);
 
 	//glwDirectionalLight dLight(vec3(0.0f, 1.0f, 0.0f), vec3(0.01f, 0.01f, 0.01f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, -0.2f, 1.0f));
 	//glwDirectionalLight dLight(vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f), vec3(1.0f, 1.0f, 1.0f));
 
-	window.frameUpdateEvent += processInput;
+	window->frameUpdateEvent += processInput;
 
 	shared_ptr<glwModel> race_track_model(new glwModel("resources/track2/track01_.3ds"));
 	shared_ptr<glwModelObject3D> race_track(new glwModelObject3D(race_track_model, vec3(0.0f), "race_track", rotate(scale(mat4x4(1.0f), vec3(0.01f)), radians(270.0f), vec3(1.0f, 0.0f, 0.0f))));
@@ -38,10 +37,10 @@ int main()
 	shader.use();
 	//shader.addSpotLight(sLight);
 
-	while (!window.ShouldClose())
+	while (!window->ShouldClose())
 	{
 		//cout << "Camera pos: " << camera.position().x << " " << camera.position().y << " " << camera.position().z << " front: " << camera.Front.x << " " << camera.Front.y << " " << camera.Front.z << endl;
-		window.Update();
+		window->Update();
 		shader.resetLights();
 		//glwSpotLight slight(vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), camera.position(), camera.Front, 0.0f,30.0f);
 		//shader.addSpotLight(slight);
@@ -58,7 +57,7 @@ int main()
 		//suit->Translate(vec3(0.01f, 0.0f, 0.0f));
 		race_track->Draw(shader);
 		car->Draw(shader);
-		window.SwapBuffers();
+		window->SwapBuffers();
 		glfwPollEvents();
 	}
 	glfwTerminate();

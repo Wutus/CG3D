@@ -54,9 +54,6 @@
     <ClInclude Include="glwObject3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="glwDrawableObject3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="glwDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -91,9 +88,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="glwPreDrawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glwInputPrecessable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
@@ -137,9 +131,6 @@
     <ClCompile Include="glwCompoundObject3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glwDrawableObject3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glwObject3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -174,9 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ObjectSerializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glwInputPrecessable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glwDriver.cpp">

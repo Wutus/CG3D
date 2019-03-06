@@ -1,6 +1,7 @@
 #pragma once
 
-#include "glwDrawableObject3D.h"
+#include "glwDrawable.h"
+#include "glwObject3D.h"
 #include "glwShader.h"
 #include "glwTexture2D.h"
 #include "glwMaterial.h"

@@ -1,65 +1,51 @@
 #include "glwCompoundObject3D.h"
 #include <algorithm>
 
+using namespace std;
 
-glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwObject3D> base, const std::string & name) : glwDrawableObject3D(base->position(), name)
+glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwObject3D> base, const std::string & name) : glwObject3D(base->position(), name)
 {
-	this->base = base;
-	this->drawable_base = nullptr;
-}
-
-glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwDrawableObject3D> base, const std::string & name) : glwDrawableObject3D(base->position(), name)
-{
-	this->base = base;
-	this->drawable_base = base;
+	objects.push_back(base);
+	base->Reset();
 }
 
 glwCompoundObject3D::~glwCompoundObject3D()
 {
 }
 
-void glwCompoundObject3D::AddDrawable(std::shared_ptr<glwDrawableObject3D> drawable)
+void glwCompoundObject3D::AddObject(std::shared_ptr<glwObject3D> object)
 {
-	drawables.push_back(drawable);
-}
-
-void glwCompoundObject3D::AddUndrawable(std::shared_ptr<glwObject3D> undrawable)
-{
-	undrawables.push_back(undrawable);
+	objects.push_back(object);
 }
 
 void glwCompoundObject3D::RemoveObject(std::shared_ptr<glwObject3D> object)
 {
-	drawables.erase(std::remove(drawables.begin(), drawables.end(), object), drawables.end());
-	undrawables.erase(std::remove(undrawables.begin(), undrawables.end(), object), undrawables.end());
+	objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
 }
 
 std::shared_ptr<glwObject3D> glwCompoundObject3D::Find(const std::string & name)
 {
-	auto res = find_if(undrawables.begin(), undrawables.end(), [&name](auto &it) {return it->name == name; });
-	if (res != undrawables.end())
+	auto res = find_if(objects.begin(), objects.end(), [&name](auto &it) {return it->name == name; });
+	if (res != objects.end())
 	{
 		return *res;
 	}
-	auto res2 = find_if(drawables.begin(), drawables.end(), [&name](auto &it) {return it->name == name; });
-	if (res2 != drawables.end())
+	else
 	{
-		return *res2;
+		return nullptr;
 	}
-	return nullptr;
 }
 
 void glwCompoundObject3D::Draw(glwShader & shader, mat4x4 model)
 {
 	model = model*this->model();
-	if (drawable_base != nullptr)
+	for (shared_ptr<glwObject3D> ptr : objects)
 	{
-		drawable_base->Draw(shader, model);
-	}
-
-	for (auto drawable : drawables)
-	{
-		drawable->Draw(shader, model*drawable->model());
+		shared_ptr<glwDrawable> drawable = dynamic_pointer_cast<glwDrawable>(ptr);
+		if (drawable != nullptr)
+		{
+			drawable->Draw(shader, model);
+		}
 	}
 }
 
@@ -68,20 +54,28 @@ glwCompoundObject3D *glwCompoundObject3D::Clone(const std::string & name)
 	glwCompoundObject3D *res = new glwCompoundObject3D(position(),name);
 	res->_model = _model;
 	res->_pos = _pos;
-	res->drawable_base = drawable_base ? std::shared_ptr<glwDrawableObject3D>(drawable_base->Clone()) : nullptr;
-	res->base = drawable_base? res->drawable_base : std::shared_ptr<glwObject3D>(base->Clone());
-
-	for (auto item : undrawables)
+	shared_ptr<glwObject3D> s(res);
+	for (shared_ptr<glwObject3D> ptr : objects)
 	{
-		res->undrawables.push_back(std::shared_ptr<glwObject3D>(item->Clone(name + "_" + item->name)));
-	}
-	for (std::shared_ptr<glwDrawableObject3D> item : drawables)
-	{
-		res->drawables.push_back(std::shared_ptr<glwDrawableObject3D>(item->Clone(name + "_" + item->name)));
+		res->AddObject(shared_ptr<glwObject3D>(ptr->Clone()));
 	}
 	return res;
 }
 
-glwCompoundObject3D::glwCompoundObject3D(vec3 pos, const std::string & name) : glwDrawableObject3D(pos, name)
+void glwCompoundObject3D::PreDraw(glwAdvancedShader & shader, mat4x4 model)
 {
+	model = model * this->model();
+	for (shared_ptr<glwObject3D> ptr : objects)
+	{
+		shared_ptr<glwPreDrawable> drawable = dynamic_pointer_cast<glwPreDrawable>(ptr);
+		if (drawable != nullptr)
+		{
+			drawable->PreDraw(shader, model);
+		}
+	}
+}
+
+glwCompoundObject3D::glwCompoundObject3D(vec3 pos, const std::string & name) : glwObject3D(pos, name)
+{
+	
 }

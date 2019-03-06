@@ -18,6 +18,7 @@ public:
 	void Rotate(float degrees, vec3 axis);
 	void Translate(vec3 translation);
 	void Scale(vec3 coef);
+	void Reset();
 	std::string name;
 protected:
 	mat4x4 _model;

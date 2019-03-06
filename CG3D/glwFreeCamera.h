@@ -22,9 +22,9 @@ class glwFreeCamera :
 	public glwCamera
 {
 public:
-	glwFreeCamera(vec3 pos, glwWindow & window);
-	glwFreeCamera(vec3 pos, vec3 target, glwWindow & window);
-	glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, glwWindow & window);
+	glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window);
+	glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window);
+	glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window);
 
 	bool Freeze;
 
@@ -39,10 +39,10 @@ public:
 private:
 	void updateCameraVectors();
 	void InitDefaults();
-	void connectToEvents(glwWindow & window);
-	std::function<void(glwWindow&, const CursorPos&)> mouseMoveCb;
-	std::function<void(glwWindow&, const ScrollOffset&)> scrollCb;
-	std::function<void(glwWindow&, const FrameUpdateInfo&)> updateCb;;
+	void connectToEvents(std::shared_ptr<glwWindow> window);
+	std::function<void(glwWindow & w, const CursorPos&)> mouseMoveCb;
+	std::function<void(glwWindow & w, const ScrollOffset&)> scrollCb;
+	std::function<void(glwWindow & w, const FrameUpdateInfo&)> updateCb;;
 
 	glm::vec3 Up;
 	glm::vec3 Right;
@@ -53,6 +53,6 @@ private:
 	float MovementSpeed;
 	float MouseSensitivity;
 
-	glwWindow *win;
+	std::weak_ptr<glwWindow> win;
 };
 

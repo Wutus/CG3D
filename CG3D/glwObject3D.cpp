@@ -49,6 +49,12 @@ void glwObject3D::Scale(vec3 coef)
 	_model = scale(model(), coef);
 }
 
+void glwObject3D::Reset()
+{
+	_model = mat4x4(1.0f);
+	_pos = vec3(0.0f);
+}
+
 std::string glwObject3D::getNewName()
 {
 	return "obj" + std::to_string(counter++);
