@@ -42,7 +42,7 @@ private:
 	void connectToEvents(std::shared_ptr<glwWindow> window);
 	std::function<void(glwWindow & w, const CursorPos&)> mouseMoveCb;
 	std::function<void(glwWindow & w, const ScrollOffset&)> scrollCb;
-	std::function<void(glwWindow & w, const FrameUpdateInfo&)> updateCb;;
+	std::function<void(glwWindow & w, const FrameUpdateInfo&)> updateCb;
 
 	glm::vec3 Up;
 	glm::vec3 Right;
