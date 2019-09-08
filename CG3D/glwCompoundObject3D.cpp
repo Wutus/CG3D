@@ -5,8 +5,10 @@ using namespace std;
 
 glwCompoundObject3D::glwCompoundObject3D(std::shared_ptr<glwObject3D> base, const std::string & name) : glwObject3D(base->position(), name)
 {
-	objects.push_back(base);
+	this->_model = base->model();
+	this->_pos = base->position();
 	base->Reset();
+	objects.push_back(base);
 }
 
 glwCompoundObject3D::~glwCompoundObject3D()
@@ -67,10 +69,10 @@ void glwCompoundObject3D::PreDraw(glwAdvancedShader & shader, mat4x4 model)
 	model = model * this->model();
 	for (shared_ptr<glwObject3D> ptr : objects)
 	{
-		shared_ptr<glwPreDrawable> drawable = dynamic_pointer_cast<glwPreDrawable>(ptr);
-		if (drawable != nullptr)
+		shared_ptr<glwPreDrawable> predrawable = dynamic_pointer_cast<glwPreDrawable>(ptr);
+		if (predrawable != nullptr)
 		{
-			drawable->PreDraw(shader, model);
+			predrawable->PreDraw(shader, model);
 		}
 	}
 }

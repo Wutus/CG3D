@@ -99,6 +99,15 @@
     <ClInclude Include="glwFreeCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="glwCarDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glwDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glwPointLightBulb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -171,6 +180,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glwFreeCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glwCarDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glwPointLightBulb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,13 +5,6 @@
 #include <iostream>
 #include <memory>
 
-struct global_data
-{
-	glwWindow *act_win;
-};
-
-static global_data g_data;
-
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// make sure the viewport matches the new window dimensions; note that width and 
@@ -21,7 +14,7 @@ static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
-	glwWindow & win = *(g_data.act_win);
+	glwWindow & win = *((glwWindow*)glfwGetWindowUserPointer(window));
 	
 	CursorPos pos;
 	pos.x = xpos;
@@ -42,7 +35,7 @@ static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	glwWindow & win = *(g_data.act_win);
+	glwWindow & win = *((glwWindow*)glfwGetWindowUserPointer(window));
 
 	ScrollOffset offset;
 	offset.x = xoffset;
@@ -72,10 +65,10 @@ glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
 	}
+	glfwSetWindowUserPointer(window, this);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
-	g_data.act_win = this;
 	lastCursorPos.x = -1;
 	lastCursorPos.y = -1;
 	lastTime = glfwGetTime();
@@ -85,7 +78,6 @@ glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*
 
 glwWindow::~glwWindow()
 {
-	g_data.act_win = nullptr;
 }
 
 bool glwWindow::ShouldClose() const

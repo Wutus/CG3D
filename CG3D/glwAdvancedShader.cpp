@@ -1,19 +1,9 @@
 #include "glwAdvancedShader.h"
 
+#include "glwDefines.h"
 #include <string>
 
 using namespace std;
-const string MODEL = "model";
-const string VIEW = "view";
-const string PROJECTION = "projection";
-const string VIEWPOS = "viewPos";
-const string DIRLIGHTS = "dirLights";
-const string POINTLIGHTS = "pointLights";
-const string SPOTLIGHTS = "spotLights";
-const string DIRLIGHTSIZE = "dirLightSize";
-const string POINTLIGHTSIZE = "pointLightSize";
-const string SPOTLIGHTSIZE = "spotLightSize";
-const string MATERIAL = "material";
 
 glwAdvancedShader::glwAdvancedShader(std::string vertexPath, std::string fragmentPath) : glwShader(vertexPath, fragmentPath)
 {
@@ -23,12 +13,6 @@ glwAdvancedShader::glwAdvancedShader(std::string vertexPath, std::string fragmen
 
 glwAdvancedShader::~glwAdvancedShader()
 {
-}
-
-void glwAdvancedShader::setCamera(const glwCamera & camera, mat4x4 system)
-{
-	setMat4(VIEW, system*camera.model());
-	setVec3(VIEWPOS, vec3(system*vec4(camera.position(), 1.0f)));
 }
 
 void glwAdvancedShader::addPointLight(const glwPointLight & pointLight, mat4x4 system)

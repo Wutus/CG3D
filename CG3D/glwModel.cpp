@@ -22,7 +22,7 @@
 
 using namespace std;
 
-glwModel::glwModel(std::string const &path, bool gamma) : gammaCorrection(gamma)
+glwModel::glwModel(const std::string &path, bool gamma) : gammaCorrection(gamma)
 {
 	loadModel(path);
 	this->path = path;

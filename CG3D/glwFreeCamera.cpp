@@ -1,5 +1,7 @@
 #include "glwFreeCamera.h"
 
+#include "glwAdvancedShader.h"
+#include "glwDefines.h"
 // Default camera values
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
@@ -8,19 +10,19 @@ const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
 
 
-glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window) : glwCamera(pos), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window, const std::string & name) : glwCamera(pos, name), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
 }
 
-glwFreeCamera::glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window, const std::string & name) : glwCamera(pos, target, name), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
 }
 
-glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window) : glwCamera(pos, target), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+glwFreeCamera::glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window, const std::string & name) : glwCamera(pos, target, name), Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
 {
 	InitDefaults();
 	connectToEvents(window);
@@ -83,6 +85,12 @@ void glwFreeCamera::ProcessMouseScroll(float yoffset)
 	_model = glm::lookAt(_pos, _pos + Front, Up);
 }
 
+void glwFreeCamera::PreDraw(glwAdvancedShader & shader, mat4x4 model)
+{
+	shader.setMat4(VIEW, model * _model);
+	shader.setVec3(VIEWPOS, _pos);
+}
+
 glwFreeCamera::~glwFreeCamera()
 {
 	std::shared_ptr<glwWindow> w = win.lock();
@@ -102,8 +110,6 @@ void glwFreeCamera::updateCameraVectors()
 	// Also re-calculate the Right and Up vector
 	Right = glm::normalize(glm::cross(Front, up));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
 	Up = glm::normalize(glm::cross(Right, Front));
-
-	Freeze = false;
 }
 
 void glwFreeCamera::InitDefaults()
@@ -111,6 +117,7 @@ void glwFreeCamera::InitDefaults()
 	Yaw = YAW;
 	Pitch = PITCH;
 	updateCameraVectors();
+	_model = glm::lookAt(_pos, _pos + Front, Up);
 }
 
 void glwFreeCamera::connectToEvents(std::shared_ptr<glwWindow> window)

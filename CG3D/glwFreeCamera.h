@@ -22,16 +22,16 @@ class glwFreeCamera :
 	public glwCamera
 {
 public:
-	glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window);
-	glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window);
-	glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window);
+	glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window, const std::string & name = "");
+	glwFreeCamera(vec3 pos, vec3 target, std::shared_ptr<glwWindow> window, const std::string & name = "");
+	glwFreeCamera(vec3 pos, std::shared_ptr<glwObject3D> target, std::shared_ptr<glwWindow> window, const std::string & name = "");
 
 	bool Freeze;
 
 	void ProcessKeyboard(Camera_Movement direction, float deltaTime);
 	void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 	void ProcessMouseScroll(float yoffset);
-
+	virtual void PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f)) override;
 	~glwFreeCamera();
 
 	glm::vec3 Front;

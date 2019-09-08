@@ -12,8 +12,8 @@ glwModelObject3D::~glwModelObject3D()
 
 void glwModelObject3D::Draw(glwShader & shader, mat4x4 model)
 {
-	model = model * _internal;
 	model = model * this->model();
+	model = model * _internal;
 	_model3d->Draw(shader, model);
 }
 

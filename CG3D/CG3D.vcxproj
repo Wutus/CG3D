@@ -23,32 +23,32 @@
     <ProjectGuid>{EC684BBB-D1CA-4DAC-BD03-B6AE22FBA4C9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CG3D</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -168,6 +168,8 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="glwAdvancedShader.h" />
     <ClInclude Include="glwCamera.h" />
+    <ClInclude Include="glwCarDriver.h" />
+    <ClInclude Include="glwDefines.h" />
     <ClInclude Include="glwDirectionalLight.h" />
     <ClInclude Include="glwDrawable.h" />
     <ClInclude Include="glad\glad.h" />
@@ -179,6 +181,7 @@
     <ClInclude Include="glwModelObject3D.h" />
     <ClInclude Include="glwFreeCamera.h" />
     <ClInclude Include="glwPointLight.h" />
+    <ClInclude Include="glwPointLightBulb.h" />
     <ClInclude Include="glwProjection.h" />
     <ClInclude Include="glwScene.h" />
     <ClInclude Include="glwShader.h" />
@@ -197,6 +200,7 @@
     <ClCompile Include="glwAdvancedShader.cpp" />
     <ClCompile Include="glwCamera.cpp" />
     <ClCompile Include="CG3D.cpp" />
+    <ClCompile Include="glwCarDriver.cpp" />
     <ClCompile Include="glwDirectionalLight.cpp" />
     <ClCompile Include="glwDrawable.cpp" />
     <ClCompile Include="glad.c" />
@@ -208,6 +212,7 @@
     <ClCompile Include="glwModelObject3D.cpp" />
     <ClCompile Include="glwFreeCamera.cpp" />
     <ClCompile Include="glwPointLight.cpp" />
+    <ClCompile Include="glwPointLightBulb.cpp" />
     <ClCompile Include="glwProjection.cpp" />
     <ClCompile Include="glwScene.cpp" />
     <ClCompile Include="glwShader.cpp" />
