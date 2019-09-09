@@ -9,6 +9,10 @@
 #include "glwMesh.h"
 #include "glwShader.h"
 #include "glwTexture2D.h"
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/split_member.hpp>
 #include <string>
 #include <vector>
 #include <memory>
@@ -29,7 +33,7 @@ public:
 
 	// draws the model, and thus all its meshes
 	void Draw(glwShader & shader, mat4x4 model = mat4x4(1.0f));
-
+	std::string GetModelPath() const;
 private:
 	/*  Functions   */
 	// loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.

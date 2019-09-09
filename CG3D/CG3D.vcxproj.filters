@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{a55b5c48-87ff-4ce5-9d0a-e949ef53691e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Library Files">
+      <UniqueIdentifier>{c16ea1d7-11f0-4913-846d-00af912e0edd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -82,9 +85,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="glwScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="glwPreDrawable.h">
@@ -171,9 +171,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glwScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glwDriver.cpp">

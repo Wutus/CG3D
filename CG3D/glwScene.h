@@ -17,6 +17,8 @@ public:
 	glwScene(const std::string & name);
 	~glwScene();
 	static std::shared_ptr<glwScene> LoadFromFile(const std::string & fileName);
+	static std::shared_ptr<glwScene> LoadFromBytes(const std::vector<char> & bytes);
+	static std::shared_ptr<glwScene> LoadFromStream(std::istream & stream);
 	glwCompoundObject3D Objects;
 	std::vector<std::shared_ptr<glwDirectionalLight>> dirLights;
 	std::vector<std::shared_ptr<glwSpotLight>> spotLights;
@@ -26,6 +28,8 @@ public:
 	void SetProjection(std::shared_ptr<glwProjection> projection);
 	void Draw();
 	void SaveToFile(const std::string & fileName);
+	std::vector<char> SaveToBytes();
+	void SaveToStream(std::ostream & stream);
 	std::string name;
 private:
 	std::shared_ptr<glwCamera> camera;

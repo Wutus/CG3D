@@ -17,7 +17,8 @@ glwCompoundObject3D::~glwCompoundObject3D()
 
 void glwCompoundObject3D::AddObject(std::shared_ptr<glwObject3D> object)
 {
-	objects.push_back(object);
+	if(std::find(objects.begin(), objects.end(), object) == objects.end())
+		objects.push_back(object);
 }
 
 void glwCompoundObject3D::RemoveObject(std::shared_ptr<glwObject3D> object)

@@ -28,6 +28,11 @@ glwModel::glwModel(const std::string &path, bool gamma) : gammaCorrection(gamma)
 	this->path = path;
 }
 
+std::string glwModel::GetModelPath() const
+{
+	return path;
+}
+
 void glwModel::Draw(glwShader & shader, mat4x4 model)
 {
 	shader.setMat4("model", model);
