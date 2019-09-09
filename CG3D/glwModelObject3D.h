@@ -3,6 +3,10 @@
 #include "glwDrawable.h"
 #include "glwObject3D.h"
 #include "glwModel.h"
+#include "glwBaseSerialization.hpp"
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/access.hpp>
 #include <memory>
 
 class glwModelObject3D : public glwDrawable, public glwObject3D
@@ -17,5 +21,15 @@ public:
 private:
 	std::shared_ptr<glwModel> _model3d;
 	mat4x4 _internal;
+
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive & ar, const unsigned int version)
+	{
+		ar & boost::serialization::base_object<glwDrawable>(*this);
+		ar & boost::serialization::base_object<glwObject3D>(*this);
+		ar & _model3d;
+		ar & _internal;
+	};
 };
 

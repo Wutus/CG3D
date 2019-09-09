@@ -18,8 +18,7 @@ enum Camera_Movement {
 	RIGHT
 };
 
-class glwFreeCamera :
-	public glwCamera
+class glwFreeCamera : public glwCamera
 {
 public:
 	glwFreeCamera(vec3 pos, std::shared_ptr<glwWindow> window, const std::string & name = "");

@@ -9,6 +9,23 @@
 
 glwTexture2D::glwTexture2D(std::string filename, std::string type, bool flip)
 {
+	loadTexture(filename, type, flip);
+}
+
+glwTexture2D::~glwTexture2D()
+{
+}
+
+void glwTexture2D::loadTexture()
+{
+	loadTexture(filename, type, flipped);
+}
+
+void glwTexture2D::loadTexture(std::string filename, std::string type, bool flip)
+{
+	this->filename = filename;
+	this->type = type;
+	this->flipped = flip;
 	glGenTextures(1, &Id);
 	glBindTexture(GL_TEXTURE_2D, Id);
 
@@ -42,11 +59,6 @@ glwTexture2D::glwTexture2D(std::string filename, std::string type, bool flip)
 	this->type = type;
 }
 
-
-glwTexture2D::~glwTexture2D()
-{
-}
-
 int glwTexture2D::GetWidth() const
 {
 	return width;
@@ -69,7 +81,7 @@ unsigned int glwTexture2D::GetID() const
 
 std::string glwTexture2D::GetFileName() const
 {
-	return fileName;
+	return filename;
 }
 
 std::string glwTexture2D::GetType() const

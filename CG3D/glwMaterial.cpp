@@ -8,7 +8,7 @@ glwMaterial::glwMaterial(std::shared_ptr<glwTexture2D> ambientTexture, std::shar
 	this->ambientTexture = ambientTexture;
 	this->diffuseTexture = diffuseTexture;
 	this->specularTexture = specularTexture;
-	this->shininess = shininess;
+	this->shiness = shininess;
 	if (checkNull())
 	{
 		throw std::invalid_argument("ambientTexture and diffuseTexture cannot be both null");

@@ -25,7 +25,6 @@ using namespace std;
 glwModel::glwModel(const std::string &path, bool gamma) : gammaCorrection(gamma)
 {
 	loadModel(path);
-	this->path = path;
 }
 
 std::string glwModel::GetModelPath() const
@@ -43,6 +42,7 @@ void glwModel::Draw(glwShader & shader, mat4x4 model)
 void glwModel::loadModel(string const &path)
 {
 	// read file via ASSIMP
+	this->path = path;
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 	// check for errors

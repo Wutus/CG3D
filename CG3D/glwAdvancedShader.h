@@ -9,6 +9,11 @@
 
 #include "glm/gtc/type_ptr.hpp"
 
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/access.hpp>
+
 #include <memory>
 #include <string>
 
@@ -26,6 +31,8 @@ public:
 	void setModelMatrix(const mat4x4 & model);
 	void setMaterial(const glwMaterial & material);
 	void resetLights();
+protected:
+	glwAdvancedShader() = default;
 private:
 	int pointlights;
 	int spotlights;
@@ -37,4 +44,14 @@ private:
 		DIRLIGHT
 	};
 	std::string getLightPath(LIGHTTYPE type);
+
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive & ar, const unsigned int version)
+	{
+		ar & boost::serialization::base_object<glwShader>(*this);
+		ar & pointlights;
+		ar & spotlights;
+		ar & dirlights;
+	}
 };

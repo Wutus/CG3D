@@ -1,6 +1,9 @@
 #pragma once
 #include "glwLightSource.h"
 #include "glwObject3D.h"
+#include "glwBaseSerialization.hpp"
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/access.hpp>
 
 class glwSpotLight : public glwLightSource, public glwObject3D
 {
@@ -13,7 +16,20 @@ public:
 	float cutOff;
 	float outerCutOff;
 
-	// Inherited via glwLightSource
 	virtual void PreDraw(glwAdvancedShader & shader, mat4x4 model = mat4x4(1.0f)) override;
+protected:
+	glwSpotLight() = default;
+private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive & ar, const unsigned int version)
+	{
+		ar & boost::serialization::base_object<glwLightSource>(*this);
+		ar & boost::serialization::base_object<glwObject3D>(*this);
+		ar & distanceFactor;
+		ar & direction;
+		ar & cutOff;
+		ar & outerCutOff;
+	};
 };
 

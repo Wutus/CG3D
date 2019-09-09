@@ -2,6 +2,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
+#include "glwBaseSerialization.hpp"
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/access.hpp>
 #include <string>
 
 using namespace glm;
@@ -21,10 +25,20 @@ public:
 	void Reset();
 	std::string name;
 protected:
+	glwObject3D();
 	mat4x4 _model;
 	vec3 _pos;
 private:
 	static unsigned int counter;
 	static std::string getNewName();
+
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive & ar, const unsigned int version)
+	{
+		ar & name;
+		ar & _model;
+		ar & _pos;
+	};
 };
 

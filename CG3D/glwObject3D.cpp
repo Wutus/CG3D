@@ -5,6 +5,11 @@ using namespace glm;
 
 unsigned int glwObject3D::counter = 0;
 
+glwObject3D::glwObject3D()
+{
+	this->name = getNewName();
+}
+
 glwObject3D::glwObject3D(vec3 pos, const std::string & name)
 {
 	_pos = pos;

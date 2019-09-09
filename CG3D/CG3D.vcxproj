@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Event.h" />
     <ClInclude Include="glwAdvancedShader.h" />
+    <ClInclude Include="glwBaseSerialization.hpp" />
     <ClInclude Include="glwCamera.h" />
     <ClInclude Include="glwCarDriver.h" />
     <ClInclude Include="glwDefines.h" />
@@ -183,7 +184,6 @@
     <ClInclude Include="glwModelObject3D.h" />
     <ClInclude Include="glwFreeCamera.h" />
     <ClInclude Include="glwPointLight.h" />
-    <ClInclude Include="glwPointLightBulb.h" />
     <ClInclude Include="glwProjection.h" />
     <ClInclude Include="glwScene.h" />
     <ClInclude Include="glwShader.h" />
@@ -213,7 +213,6 @@
     <ClCompile Include="glwModelObject3D.cpp" />
     <ClCompile Include="glwFreeCamera.cpp" />
     <ClCompile Include="glwPointLight.cpp" />
-    <ClCompile Include="glwPointLightBulb.cpp" />
     <ClCompile Include="glwProjection.cpp" />
     <ClCompile Include="glwScene.cpp" />
     <ClCompile Include="glwShader.cpp" />

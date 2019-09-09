@@ -105,7 +105,7 @@
     <ClInclude Include="glwDefines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="glwPointLightBulb.h">
+    <ClInclude Include="glwBaseSerialization.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,9 +180,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glwCarDriver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glwPointLightBulb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

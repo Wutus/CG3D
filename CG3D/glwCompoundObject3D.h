@@ -32,6 +32,9 @@ private:
 	template<class Archive>
 	void serialize(Archive & ar, const unsigned int version)
 	{
+		ar & boost::serialization::base_object<glwObject3D>(*this);
+		ar & boost::serialization::base_object<glwDrawable>(*this);
+		ar & boost::serialization::base_object<glwPreDrawable>(*this);
 		ar & objects;
 	};
 };

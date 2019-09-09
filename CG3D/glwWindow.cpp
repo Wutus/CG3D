@@ -71,7 +71,7 @@ glwWindow::glwWindow(uint width, uint height, std::string title) : scrollEvent(*
 	glfwSetScrollCallback(window, scroll_callback);
 	lastCursorPos.x = -1;
 	lastCursorPos.y = -1;
-	lastTime = glfwGetTime();
+	lastTime = static_cast<float>(glfwGetTime());
 	frame = 0;
 }
 
@@ -114,7 +114,7 @@ void glwWindow::SwapBuffers()
 
 void glwWindow::Update()
 {
-	float now = glfwGetTime();
+	float now = static_cast<float>(glfwGetTime());
 	FrameUpdateInfo info;
 	info.DeltaTime = now - lastTime;
 	info.FrameNo = frame++;

@@ -1,5 +1,10 @@
 #pragma once
 
+#include "glwBaseSerialization.hpp"
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/access.hpp>
 #include <string>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -27,11 +32,29 @@ public:
 	void setMat2(const std::string &name, const glm::mat2 &mat) const;
 	void setMat3(const std::string &name, const glm::mat3 &mat) const;
 	void setMat4(const std::string &name, const glm::mat4 &mat) const;
-
-
+protected:
+	glwShader() = default;
 private:
-	// utility function for checking shader compilation/linking errors.
-	// ------------------------------------------------------------------------
+	std::string vertexCode, fragmentCode;
+	void loadFromCodes();
+	void loadFromCodes(const std::string & vertexCode, const std::string & fragmentCode);
 	void checkCompileErrors(unsigned int shader, std::string type);
+
+	friend class boost::serialization::access;
+	template<class Archive>
+	void save(Archive & ar, const unsigned int version) const
+	{
+		ar & vertexCode;
+		ar & fragmentCode;
+	}
+	template<class Archive>
+	void load(Archive & ar, const unsigned int version)
+	{
+		ar & vertexCode;
+		ar & fragmentCode;
+		loadFromCodes();
+	}
+
+	BOOST_SERIALIZATION_SPLIT_MEMBER();
 };
 

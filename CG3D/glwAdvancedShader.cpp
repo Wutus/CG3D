@@ -65,7 +65,7 @@ void glwAdvancedShader::setModelMatrix(const mat4x4 & model)
 
 void glwAdvancedShader::setMaterial(const glwMaterial & material)
 {
-	setFloat(MATERIAL + ".shininess", material.shininess);
+	setFloat(MATERIAL + ".shininess", material.shiness);
 	setInt(MATERIAL + ".diffuse", material.getDiffuseTexture()->GetID());
 	setInt(MATERIAL + ".specular", material.getSpecularTexture()->GetID());
 }

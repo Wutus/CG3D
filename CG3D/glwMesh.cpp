@@ -85,11 +85,11 @@ void glwMesh::Draw(glwShader & shader)
 		shader.setInt("material.specular", 1);
 		glBindTexture(GL_TEXTURE_2D, material->getSpecularTexture()->GetID());
 
-		shader.setFloat("material.shininess", material->shininess);
+		shader.setFloat("material.shininess", material->shiness);
 	}
 	// draw mesh
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
 	// always good practice to set everything back to defaults once configured.
