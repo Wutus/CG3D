@@ -126,13 +126,13 @@ void glwFreeCamera::connectToEvents(std::shared_ptr<glwWindow> window)
 	mouseMoveCb = [this](glwWindow & w, const CursorPos & cp) {this->ProcessMouseMovement(static_cast<float>(cp.x), static_cast<float>(cp.y)); };
 	scrollCb = [this](glwWindow & w, const ScrollOffset & so) {this->ProcessMouseScroll(static_cast<float>(so.y)); };
 	updateCb = [this](glwWindow & w, const FrameUpdateInfo & info) {
-		if (w.GetKey(GLFW_KEY_W) == GLFW_PRESS)
+		if (w.GetKey(GLFW_KEY_I) == GLFW_PRESS)
 			this->ProcessKeyboard(FORWARD, info.DeltaTime);
-		if (w.GetKey(GLFW_KEY_S) == GLFW_PRESS)
+		if (w.GetKey(GLFW_KEY_K) == GLFW_PRESS)
 			this->ProcessKeyboard(BACKWARD, info.DeltaTime);
-		if (w.GetKey(GLFW_KEY_A) == GLFW_PRESS)
+		if (w.GetKey(GLFW_KEY_J) == GLFW_PRESS)
 			this->ProcessKeyboard(LEFT, info.DeltaTime);
-		if (w.GetKey(GLFW_KEY_D) == GLFW_PRESS)
+		if (w.GetKey(GLFW_KEY_L) == GLFW_PRESS)
 			this->ProcessKeyboard(RIGHT, info.DeltaTime);
 	};
 

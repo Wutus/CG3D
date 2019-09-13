@@ -184,16 +184,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cg.vs">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="cg.fs">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="light.vs">
       <Filter>Shaders</Filter>
     </None>
     <None Include="light.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="phong.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="phong.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="gouraud.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="gouraud.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

@@ -229,12 +229,21 @@
     <ClCompile Include="glwTexture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cg.fs">
+    <None Include="gouraud.fs">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
+    <None Include="gouraud.vs" />
+    <None Include="phong.fs">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
       <DeploymentContent>false</DeploymentContent>
     </None>
-    <None Include="cg.vs" />
+    <None Include="phong.vs" />
     <None Include="light.fs" />
     <None Include="light.vs" />
   </ItemGroup>

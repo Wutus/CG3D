@@ -85,7 +85,7 @@ void glwMesh::Draw(glwShader & shader)
 		shader.setInt("material.specular", 1);
 		glBindTexture(GL_TEXTURE_2D, material->getSpecularTexture()->GetID());
 
-		shader.setFloat("material.shininess", material->shiness);
+		shader.setFloat("material.shiness", material->shiness);
 	}
 	// draw mesh
 	glBindVertexArray(VAO);

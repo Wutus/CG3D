@@ -13,7 +13,7 @@ using namespace glm;
 class glwMaterial
 {
 public:
-	glwMaterial(std::shared_ptr<glwTexture2D> ambientTexture, std::shared_ptr<glwTexture2D> diffuseTexture, std::shared_ptr<glwTexture2D> specularTexture = nullptr, float shininess = 1.0f);
+	glwMaterial(std::shared_ptr<glwTexture2D> ambientTexture, std::shared_ptr<glwTexture2D> diffuseTexture, std::shared_ptr<glwTexture2D> specularTexture = nullptr, float shiness = 0.1f);
 	~glwMaterial();
 	const std::shared_ptr<glwTexture2D> getAmbientTexture() const;
 	const std::shared_ptr<glwTexture2D> getDiffuseTexture() const;
